@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Data.Host", "Eji.SwimTrack.Data.Host\Eji.SwimTrack.Data.Host.csproj", "{0AE83620-5F8D-4E41-AF46-8F2839B2E65A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Data.Tests", "Eji.SwimTrack.Data.Tests\Eji.SwimTrack.Data.Tests.csproj", "{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Data", "Eji.SwimTrack.Data\Eji.SwimTrack.Data.csproj", "{7E45E137-92BD-4357-B417-F55B56ADB1F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.DAL", "Eji.SwimTrack.DAL\Eji.SwimTrack.DAL.csproj", "{87D5BF95-C124-447F-9A74-92E67363D6A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Data.Tests", "Eji.SwimTrack.Data.Tests\Eji.SwimTrack.Data.Tests.csproj", "{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Models", "Eji.SwimTrack.Models\Eji.SwimTrack.Models.csproj", "{DB9299D8-341C-4640-A3C4-E8241C789EE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0AE83620-5F8D-4E41-AF46-8F2839B2E65A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AE83620-5F8D-4E41-AF46-8F2839B2E65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AE83620-5F8D-4E41-AF46-8F2839B2E65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AE83620-5F8D-4E41-AF46-8F2839B2E65A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E45E137-92BD-4357-B417-F55B56ADB1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E45E137-92BD-4357-B417-F55B56ADB1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E45E137-92BD-4357-B417-F55B56ADB1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E45E137-92BD-4357-B417-F55B56ADB1F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D5BF95-C124-447F-9A74-92E67363D6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D5BF95-C124-447F-9A74-92E67363D6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D5BF95-C124-447F-9A74-92E67363D6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D5BF95-C124-447F-9A74-92E67363D6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB9299D8-341C-4640-A3C4-E8241C789EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB9299D8-341C-4640-A3C4-E8241C789EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB9299D8-341C-4640-A3C4-E8241C789EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB9299D8-341C-4640-A3C4-E8241C789EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

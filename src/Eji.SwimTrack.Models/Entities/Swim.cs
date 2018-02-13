@@ -15,8 +15,8 @@ namespace Eji.SwimTrack.Models.Entities
     {
         public int Distance { get; set; }
 
-        public int Metric { get; set; }
+        public CourseUnits DistanceUnits { get; set; }
 
-        public int TimeSeconds { get; set; }
+        public Nullable<decimal> TimeSeconds { get; set; }
     }
 }

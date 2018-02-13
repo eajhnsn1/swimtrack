@@ -39,7 +39,7 @@ namespace Eji.SwimTrack.Data.Tests.ContextTests
         [Fact]
         public void AddASwimWithDbSet()
         {
-            Swim swim = new Swim() { Distance = 100, Metric=1, TimeSeconds=30 };
+            Swim swim = new Swim() { Distance = 100, DistanceUnits= Models.CourseUnits.Meters, TimeSeconds=30 };
             db.Swims.Add(swim);
 
             db.SaveChanges();

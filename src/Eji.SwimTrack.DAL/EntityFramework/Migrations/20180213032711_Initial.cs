@@ -16,8 +16,8 @@ namespace Eji.SwimTrack.DAL.EntityFramework.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Distance = table.Column<int>(nullable: false),
-                    Metric = table.Column<int>(nullable: false),
-                    TimeSeconds = table.Column<int>(nullable: false),
+                    DistanceUnits = table.Column<int>(nullable: false),
+                    TimeSeconds = table.Column<decimal>(type: "decimal(8, 2)", nullable: true),
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true)
                 },
                 constraints: table =>

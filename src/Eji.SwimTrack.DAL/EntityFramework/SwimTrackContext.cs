@@ -23,6 +23,14 @@ namespace Eji.SwimTrack.DAL.EntityFramework
             
         }
 
+        /// <summary>
+        /// Model is being generated
+        /// </summary>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Swim>().Property(p => p.TimeSeconds).HasColumnType("decimal(8, 2)");
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

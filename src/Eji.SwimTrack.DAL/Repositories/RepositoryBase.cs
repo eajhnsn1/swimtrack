@@ -98,17 +98,7 @@ namespace Eji.SwimTrack.DAL.Repositories
 
         public virtual int Update(T entity, bool persist = true)
         {
-            if (entity.Id == 0)
-            {
-                // EF treats Id = 0 as an insert.  This book has all sorts of tests setup assuming 0 works (maybe it did in 1.0).
-                // rather than go through and update all tests and seed data accordingly, I'm just going to put this hack in place
-                // for updates where Id = 0
-                Db.Entry(entity).State = EntityState.Modified;
-            }
-            else
-            {
-                Table.Update(entity);
-            }
+            Table.Update(entity);
             return persist ? SaveChanges() : 0;
         }
 

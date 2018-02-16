@@ -21,7 +21,11 @@ namespace Eji.SwimTrack.DAL.EntityFramework
 
         public SwimTrackContext(DbContextOptions options) : base (options)
         {
-            Database.Migrate();
+            // skip migrations during unit testing 
+            if (!Database.ProviderName.EndsWith("InMemory"))
+            {
+                Database.Migrate();
+            }
         }
 
         /// <summary>

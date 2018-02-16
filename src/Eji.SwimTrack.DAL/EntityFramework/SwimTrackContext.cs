@@ -1,5 +1,6 @@
 ﻿using Eji.SwimTrack.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Eji.SwimTrack.DAL.EntityFramework
 
         public SwimTrackContext(DbContextOptions options) : base (options)
         {
-            
+            Database.Migrate();
         }
 
         /// <summary>

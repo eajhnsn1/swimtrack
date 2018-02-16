@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Eji.SwimTrack.DAL.Repositories
 {
-    public class SwimRepository : RepositoryBase<Swim>
+    public class SwimRepository : RepositoryBase<Swim>, ISwimRepository
     {
         public SwimRepository(DbContextOptions<SwimTrackContext> options) 
             : base(options)

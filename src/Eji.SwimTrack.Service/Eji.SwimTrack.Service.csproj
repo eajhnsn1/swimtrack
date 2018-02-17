@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Eji.SwimTrack.DAL\Eji.SwimTrack.DAL.csproj" />
     <ProjectReference Include="..\Eji.SwimTrack.Models\Eji.SwimTrack.Models.csproj" />
+    <ProjectReference Include="..\Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj" />
   </ItemGroup>
 
 </Project>

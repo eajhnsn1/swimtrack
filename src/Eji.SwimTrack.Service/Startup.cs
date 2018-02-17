@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Eji.SwimTrack.DAL.EntityFramework;
 using Eji.SwimTrack.DAL.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Eji.SwimTrack.Service
 {
@@ -24,16 +25,21 @@ namespace Eji.SwimTrack.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore()
-                .AddJsonFormatters(j =>
-                {
-                    j.ContractResolver = new DefaultContractResolver();
-                    j.Formatting = Formatting.Indented;
-                });
+            services.AddMvc().AddJsonOptions(o =>
+            {
+                o.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                o.SerializerSettings.Formatting = Formatting.Indented;
+            });
 
             services.AddDbContext<SwimTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SwimTrack")));
 
             services.AddScoped<ISwimRepository, SwimRepository>();
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SwimTrack API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,12 @@ namespace Eji.SwimTrack.Service
 
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SwimTrack API V1");
+            });
 
             app.UseMvc();
         }

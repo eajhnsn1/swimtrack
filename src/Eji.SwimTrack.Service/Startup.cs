@@ -10,6 +10,8 @@ using Newtonsoft.Json.Serialization;
 using Eji.SwimTrack.DAL.EntityFramework;
 using Eji.SwimTrack.DAL.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
+using System.Reflection;
 
 namespace Eji.SwimTrack.Service
 {
@@ -33,6 +35,8 @@ namespace Eji.SwimTrack.Service
 
             services.AddDbContext<SwimTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SwimTrack")));
 
+            // Add automapper 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<ISwimRepository, SwimRepository>();
 
             // Register the Swagger generator, defining one or more Swagger documents
@@ -65,6 +69,7 @@ namespace Eji.SwimTrack.Service
             }
 
             app.UseSwagger();
+
 
             app.UseSwaggerUI(c =>
             {

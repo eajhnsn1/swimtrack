@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,13 +15,15 @@ namespace Eji.SwimTrack.Service.Tests
         [Fact]
         public void RegisterAutoMapperProfile()
         {
-            /*
-            Mock<IServiceCollection> services = new Mock<IServiceCollection>();
-            services.SetupAllProperties();
+            IServiceCollection services = new ServiceCollection();
 
             Startup startup = new Startup(Mock.Of<IConfiguration>());
-            startup.Configure(Mock.Of<IApplicationBuilder>(), Mock.Of<IHostingEnvironment>(), Mock.Of<ILoggerFactory>());
-            */
+            startup.ConfigureServices(services);
+
+            ServiceProvider provider = services.BuildServiceProvider();
+
+            IMapper mapper = provider.GetService<IMapper>();
+            Assert.NotNull(mapper);
         }
     }
 }

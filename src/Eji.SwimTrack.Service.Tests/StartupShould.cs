@@ -16,12 +16,11 @@ namespace Eji.SwimTrack.Service.Tests
         public void RegisterAutoMapperProfile()
         {
             IServiceCollection services = new ServiceCollection();
-
             Startup startup = new Startup(Mock.Of<IConfiguration>());
+
             startup.ConfigureServices(services);
 
             ServiceProvider provider = services.BuildServiceProvider();
-
             IMapper mapper = provider.GetService<IMapper>();
             Assert.NotNull(mapper);
         }

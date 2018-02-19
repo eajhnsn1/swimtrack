@@ -8,9 +8,11 @@ namespace Eji.SwimTrack.Service.Models
     /// </summary>
     public class SwimData : BaseData
     {
+        public int Id { get; set; }
+
         public int Distance { get; set; }
 
-        public MeasurementUnit DistanceUnit { get; set; }
+        public MeasurementUnit DistanceUnits { get; set; }
 
         public Nullable<decimal> TimeSeconds { get; set; }
     }

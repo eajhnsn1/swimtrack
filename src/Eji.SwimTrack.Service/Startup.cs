@@ -68,9 +68,8 @@ namespace Eji.SwimTrack.Service
 
             }
 
+            // setup swagger
             app.UseSwagger();
-
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SwimTrack API V1");

@@ -12,7 +12,7 @@ namespace Eji.SwimTrack.Service.Models
 
         public int Distance { get; set; }
 
-        public MeasurementUnit DistanceUnits { get; set; }
+        public DistanceUnits DistanceUnits { get; set; }
 
         public Nullable<decimal> TimeSeconds { get; set; }
     }

@@ -23,11 +23,11 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
         }
 
         [Theory]
-        [InlineData(CourseUnits.Meters, MeasurementUnit.Meters)]
-        [InlineData(CourseUnits.Yards, MeasurementUnit.Yards)]
-        public void MapDistanceUnits(CourseUnits source, MeasurementUnit expected)
+        [InlineData(CourseUnits.Meters, DistanceUnits.Meters)]
+        [InlineData(CourseUnits.Yards, DistanceUnits.Yards)]
+        public void MapDistanceUnits(CourseUnits source, DistanceUnits expected)
         {
-            Assert.Equal(expected, Mapper.Map<MeasurementUnit>(source));
+            Assert.Equal(expected, Mapper.Map<DistanceUnits>(source));
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
 
             Assert.NotNull(swimData);
             Assert.Equal(swim.Distance, swimData.Distance);
-            Assert.Equal(MeasurementUnit.Meters, swimData.DistanceUnits);
+            Assert.Equal(DistanceUnits.Meters, swimData.DistanceUnits);
             Assert.Equal(swim.Id, swimData.Id);
             Assert.Equal(swim.TimeSeconds, swimData.TimeSeconds);
         }

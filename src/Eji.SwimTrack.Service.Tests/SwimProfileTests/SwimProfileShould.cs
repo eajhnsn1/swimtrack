@@ -22,14 +22,6 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
             Mapper.Initialize(m => m.AddProfile<SwimProfile>());
         }
 
-        [Theory]
-        [InlineData(CourseUnits.Meters, DistanceUnits.Meters)]
-        [InlineData(CourseUnits.Yards, DistanceUnits.Yards)]
-        public void MapDistanceUnits(CourseUnits source, DistanceUnits expected)
-        {
-            Assert.Equal(expected, Mapper.Map<DistanceUnits>(source));
-        }
-
         [Fact]
         public void MapSwimToSwimData()
         {

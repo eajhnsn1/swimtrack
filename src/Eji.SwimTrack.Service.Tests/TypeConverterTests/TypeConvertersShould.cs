@@ -12,8 +12,12 @@ namespace Eji.SwimTrack.Service.Tests.TypeConverterTests
     /// <summary>
     /// Tests the various ITypeConverters
     /// </summary>
+    [Collection("AutoMapper")]
     public class TypeConvertersShould : IDisposable
     {
+        /// <summary>
+        /// Reset and initialize the mapper
+        /// </summary>
         public TypeConvertersShould()
         {
             Mapper.Reset();

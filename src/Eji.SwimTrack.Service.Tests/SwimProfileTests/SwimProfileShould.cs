@@ -14,6 +14,7 @@ using Eji.SwimTrack.Models;
 
 namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
 {
+    [Collection("AutoMapper")]
     public class SwimProfileShould 
     {
         public SwimProfileShould()

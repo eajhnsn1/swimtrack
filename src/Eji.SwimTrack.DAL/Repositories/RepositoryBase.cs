@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Eji.SwimTrack.DAL.Repositories
 {
@@ -69,9 +70,19 @@ namespace Eji.SwimTrack.DAL.Repositories
             return Table.FirstOrDefault();
         }
 
+        public Task<T> GetFirstAsync()
+        {
+            return Table.FirstOrDefaultAsync();
+        }
+
         public virtual IEnumerable<T> GetAll()
         {
             return Table;
+        }
+
+        public virtual Task<IEnumerable<T>> GetAllAsync()
+        {
+            return Task<IEnumerable<T>>.Run(() => GetAll());
         }
 
         internal IEnumerable<T> GetRange(IQueryable<T> query, int skip, int take)
@@ -90,10 +101,24 @@ namespace Eji.SwimTrack.DAL.Repositories
             return persist ? SaveChanges() : 0;
         }
 
+        public virtual async Task<int> AddAsync(T entity, bool persist = true)
+        {
+            await Table.AddAsync(entity);
+
+            return persist ? await SaveChangesAsync() : 0;
+        }
+
         public int AddRange(IEnumerable<T> entities, bool persist = true)
         {
             Table.AddRange(entities);
             return persist ? SaveChanges() : 0;
+        }
+
+        public async Task<int> AddRangeAsync(IEnumerable<T> entities, bool persist = true)
+        {
+            await Table.AddRangeAsync(entities);
+
+            return persist ? await SaveChangesAsync() : 0;
         }
 
         public virtual int Update(T entity, bool persist = true)
@@ -140,6 +165,29 @@ namespace Eji.SwimTrack.DAL.Repositories
 
             Db.Entry(new T { Id = id, Timestamp = timeStamp }).State = EntityState.Deleted;
             return persist ? SaveChanges() : 0;
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            try
+            {
+                return Db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (RetryLimitExceededException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public int SaveChanges()

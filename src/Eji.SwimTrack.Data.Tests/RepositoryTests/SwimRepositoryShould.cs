@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace Eji.SwimTrack.Data.Tests.RepositoryTests
 {
@@ -40,6 +41,15 @@ namespace Eji.SwimTrack.Data.Tests.RepositoryTests
             }
 
             repository.AddRange(swims);
+        }
+
+        [Fact]
+        public async Task ReturnAllAsync()
+        {
+            int expectedCount = repository.Count;
+
+            int actualCount = (await repository.GetAllAsync()).Count();
+            Assert.Equal(expectedCount, actualCount);
         }
 
         [Fact]
@@ -90,6 +100,15 @@ namespace Eji.SwimTrack.Data.Tests.RepositoryTests
         }
 
         [Fact]
+        public async Task ReturnFirstAsync()
+        {
+            Swim swim = await repository.GetFirstAsync();
+
+            Assert.NotNull(swim);
+            Assert.Equal(swim, repository.GetFirst());
+        }
+
+        [Fact]
         public void UpdateSwim()
         {
             Swim swim = repository.GetFirst();
@@ -110,6 +129,16 @@ namespace Eji.SwimTrack.Data.Tests.RepositoryTests
             int initialCount = repository.Count;
 
             Assert.Equal(1, repository.Add(newSwim));
+            Assert.Equal(initialCount + 1, repository.Count);
+        }
+
+        [Fact]
+        public async Task AddSingleSwimAsync()
+        {
+            Swim newSwim = new Swim() { Distance = 50, DistanceUnits = Models.CourseUnits.Yards, TimeSeconds = 200 };
+            int initialCount = repository.Count;
+
+            Assert.Equal(1, await repository.AddAsync(newSwim));
             Assert.Equal(initialCount + 1, repository.Count);
         }
     }

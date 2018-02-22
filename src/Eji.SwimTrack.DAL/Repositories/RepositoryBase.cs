@@ -65,6 +65,11 @@ namespace Eji.SwimTrack.DAL.Repositories
             return Table.Find(id);
         }
 
+        public Task<T> FindAsync(int? id)
+        {
+            return Table.FindAsync(id);
+        }
+
         public T GetFirst()
         {
             return Table.FirstOrDefault();

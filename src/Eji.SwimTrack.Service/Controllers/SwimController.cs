@@ -28,7 +28,7 @@ namespace Eji.SwimTrack.Service.Controllers
         public async Task<IEnumerable<SwimData>> Get()
         {
             // TODO: limit it to the user's swims
-            return swimRepository.GetAll().Select(s => mapper.Map<SwimData>(s));
+            return (await swimRepository.GetAllAsync()).Select(s => mapper.Map<SwimData>(s));
         }
 
         // GET: api/Swim/5

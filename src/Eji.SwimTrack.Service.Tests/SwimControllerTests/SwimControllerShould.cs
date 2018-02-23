@@ -60,7 +60,7 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
 
 
         [Fact]
-        public async void ReturnSwimGivenId()
+        public async void ReturnSwimOnGet_GivenId()
         {
             SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
 
@@ -71,6 +71,18 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
             Assert.NotNull(swim);
             Assert.Equal(10, swim.Id);
             Assert.Equal(200, swim.Distance);
+        }
+
+        [Fact]
+        public async void ReturnNullOnGet_GivenInvalidId()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+
+            swimRepo.Setup(r => r.FindAsync(It.IsAny<int>())).Returns(Task<Swim>.FromResult<Swim>(null));
+
+            SwimData swim = await controller.Get(10);
+
+            Assert.Null(swim);
         }
     }
 }

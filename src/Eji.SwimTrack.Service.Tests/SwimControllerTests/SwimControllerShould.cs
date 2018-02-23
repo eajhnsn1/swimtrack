@@ -35,8 +35,8 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
             swims = new List<Swim>()
             {
                 new Swim() { Distance = 100, Id = 1, TimeSeconds = 500},
-                new Swim() { Distance = 200, Id = 1, TimeSeconds = 1000},
-                new Swim() { Distance = 400, Id = 1, TimeSeconds = 2000}
+                new Swim() { Distance = 200, Id = 10, TimeSeconds = 1000},
+                new Swim() { Distance = 400, Id = 100, TimeSeconds = 2000}
             };
 
             Task<IEnumerable<Swim>> repoResult = Task<IEnumerable<Swim>>.FromResult<IEnumerable<Swim>>(swims);
@@ -58,5 +58,19 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
                                        s => { Assert.Equal(400, s.Distance); });
         }
 
+
+        [Fact]
+        public async void ReturnSwimGivenId()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+
+            swimRepo.Setup(r => r.FindAsync(It.IsAny<int>())).Returns<int>(anId => Task<Swim>.FromResult(swims.First(s => s.Id == anId)));
+
+            SwimData swim = await controller.Get(10);
+
+            Assert.NotNull(swim);
+            Assert.Equal(10, swim.Id);
+            Assert.Equal(200, swim.Distance);
+        }
     }
 }

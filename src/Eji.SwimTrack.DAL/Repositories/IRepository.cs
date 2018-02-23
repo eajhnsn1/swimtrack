@@ -11,6 +11,7 @@ namespace Eji.SwimTrack.DAL.Repositories
         int Count { get; }
         bool HasChanges { get; }
         T Find(int? id);
+        Task<T> FindAsync(int? id);
         T GetFirst();
         Task<T> GetFirstAsync();
         IEnumerable<T> GetAll();

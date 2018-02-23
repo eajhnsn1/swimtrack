@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Eji.SwimTrack.DAL.Repositories;
+using Eji.SwimTrack.Models.Entities;
 using Eji.SwimTrack.Service.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,11 +34,11 @@ namespace Eji.SwimTrack.Service.Controllers
 
         // GET: api/Swim/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<SwimData> Get(int id)
         {
+            Swim swim = await swimRepository.FindAsync(id);
 
-            return "value";
-
+            return mapper.Map<SwimData>(swim);
         }
         
         // POST: api/Swim

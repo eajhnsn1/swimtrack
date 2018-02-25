@@ -43,8 +43,15 @@ namespace Eji.SwimTrack.Service.Controllers
         
         // POST: api/Swim
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task Post(SwimData swimData)
         {
+            Swim swim = mapper.Map<Swim>(swimData);
+
+            int records = await swimRepository.AddAsync(swim);
+            if (records == 0)
+            {
+                throw new InvalidOperationException("Failed to save new swim data");
+            }
         }
         
         // PUT: api/Swim/5

@@ -29,6 +29,7 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
             MapperConfiguration mapConfig = new MapperConfiguration(e =>
             {
                 e.CreateMap<Swim, SwimData>();
+                e.CreateMap<SwimData, Swim>();
             });
             simpleMapper = mapConfig.CreateMapper();
 
@@ -83,6 +84,33 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
             SwimData swim = await controller.Get(10);
 
             Assert.Null(swim);
+        }
+
+        [Fact]
+        public async void AddOnPost()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+            SwimData newSwim = new SwimData();
+            newSwim.Distance = 100;
+            newSwim.TimeSeconds = 40;
+
+            swimRepo.Setup(r => r.AddAsync(It.IsAny<Swim>(), true)).Returns(Task.FromResult(1));
+
+            await controller.Post(newSwim);
+
+            swimRepo.Verify(r => r.AddAsync(It.Is<Swim>(s => s.Distance == 100), true), Times.Once);
+        }
+ 
+        [Fact]
+        public async void AddOnPostRaisesError_GivenRepositoryAddFailure()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+            SwimData newSwim = new SwimData();
+
+            // returning 0, indicating a save didn't happen
+            swimRepo.Setup(r => r.AddAsync(It.IsAny<Swim>(), true)).Returns(Task.FromResult(0));
+
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await controller.Post(newSwim));
         }
     }
 }

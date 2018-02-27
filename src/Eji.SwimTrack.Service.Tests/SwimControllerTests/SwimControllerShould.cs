@@ -132,5 +132,16 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
                                                             s.Distance == 100 && 
                                                             s.TimeSeconds == 40), true), Times.Once);
         }
+
+        [Fact]
+        public void FailUpdateOnPut_GivenWrongId()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+            SwimData newSwim = new SwimData();
+            newSwim.Id = 300;
+
+            InvalidOperationException ex = Assert.Throws<InvalidOperationException>(() => controller.Put(1, newSwim));
+            Assert.Contains("Invalid URL", ex.Message, StringComparison.CurrentCultureIgnoreCase);
+        }
     }
 }

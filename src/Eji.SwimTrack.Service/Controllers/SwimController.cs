@@ -62,7 +62,7 @@ namespace Eji.SwimTrack.Service.Controllers
             if (id != swimData.Id)
             {
                 // TODO: throw something better
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Invalid URL for the posted swim");
             }
 
             Swim swim = mapper.Map<Swim>(swimData);
@@ -80,6 +80,5 @@ namespace Eji.SwimTrack.Service.Controllers
         public void Delete(int id)
         {
         }
-
     }
 }

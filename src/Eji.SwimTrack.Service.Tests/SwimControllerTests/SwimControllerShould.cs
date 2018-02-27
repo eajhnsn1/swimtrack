@@ -112,5 +112,25 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
 
             await Assert.ThrowsAsync<InvalidOperationException>(async () => await controller.Post(newSwim));
         }
+
+        [Fact]
+        public void UpdateOnPut()
+        {
+            SwimController controller = new SwimController(simpleMapper, swimRepo.Object);
+            SwimData newSwim = new SwimData();
+            newSwim.Distance = 100;
+            newSwim.TimeSeconds = 40;
+            newSwim.Id = 300;
+
+            // indicate a single record was updated
+            swimRepo.Setup(r => r.Update(It.IsAny<Swim>(), true)).Returns(1);
+
+            controller.Put(300, newSwim);
+
+            // make sure Update was called on the repository 
+            swimRepo.Verify(r => r.Update(It.Is<Swim>(s => s.Id == 300 && 
+                                                            s.Distance == 100 && 
+                                                            s.TimeSeconds == 40), true), Times.Once);
+        }
     }
 }

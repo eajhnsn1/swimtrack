@@ -50,15 +50,29 @@ namespace Eji.SwimTrack.Service.Controllers
             int records = await swimRepository.AddAsync(swim);
             if (records == 0)
             {
+                // TODO: throw something better
                 throw new InvalidOperationException("Failed to save new swim data");
             }
         }
         
         // PUT: api/Swim/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]SwimData swimData)
         {
-           
+            if (id != swimData.Id)
+            {
+                // TODO: throw something better
+                throw new InvalidOperationException();
+            }
+
+            Swim swim = mapper.Map<Swim>(swimData);
+
+            int records = swimRepository.Update(swim);
+            if (records != 1)
+            {
+                // TODO: throw something better
+                throw new InvalidOperationException();
+            }
         }
         
         // DELETE: api/ApiWithActions/5

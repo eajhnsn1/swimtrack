@@ -13,7 +13,7 @@ namespace Eji.SwimTrack.Service.Controllers
 {
     [Produces("application/json")]
     [Route("api/Swim")]
-    public class SwimController : Controller
+    public class SwimController : ControllerBase
     {
         ISwimRepository swimRepository = null;
         IMapper mapper = null;
@@ -70,15 +70,20 @@ namespace Eji.SwimTrack.Service.Controllers
             int records = swimRepository.Update(swim);
             if (records != 1)
             {
-                // TODO: throw something better
+                // TODO: throw something better - could be an optimistic locking issue
                 throw new InvalidOperationException();
             }
         }
         
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id}/{timestamp}")]
+        public void Delete(int id, string timestamp)
         {
+            byte[] tsBytes = ConvertTimeStamp(timestamp);
+            if (tsBytes == null)
+            {
+                throw new InvalidOperationException("Record timestamp required to delete"); 
+            }
         }
     }
 }

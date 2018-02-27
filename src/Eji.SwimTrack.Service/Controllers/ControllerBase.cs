@@ -12,6 +12,10 @@ namespace Eji.SwimTrack.Service.Controllers
     /// </summary>
     public abstract class ControllerBase : Controller
     {
+        /// <summary>
+        /// Converts a text/json timestamp into the byte array needed by 
+        /// the data layer
+        /// </summary>
         public byte[] ConvertTimeStamp(string timestampText)
         {
             if (String.IsNullOrEmpty(timestampText))

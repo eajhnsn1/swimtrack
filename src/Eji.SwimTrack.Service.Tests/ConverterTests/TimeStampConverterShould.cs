@@ -6,36 +6,31 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using Eji.SwimTrack.Service.Converters;
 
 namespace Eji.SwimTrack.Service.Tests.ControllerBaseTests
 {
-    public class ControllerBaseShould 
+    public class TimeStampConverterShould 
     {
         [Fact]
         public void ConvertTimeStamp_GivenEmptyString()
         {
-            Mock<ControllerBase> controller = new Mock<ControllerBase>() { CallBase = true };
-
-            Assert.Null(controller.Object.ConvertTimeStamp(""));
+            Assert.Null(TimeStampConverter.ConvertTimeStamp(""));
         }
 
         [Fact]
         public void ConvertTimeStampReturnEmpty_GivenInvalidString()
         {
-            Mock<ControllerBase> controller = new Mock<ControllerBase>() { CallBase = true };
-
-            Assert.Null(controller.Object.ConvertTimeStamp("a;lskdjfl;asjf883ra;j"));
+            Assert.Null(TimeStampConverter.ConvertTimeStamp("a;lskdjfl;asjf883ra;j"));
         }
 
         [Fact]
         public void ConvertTimeStamp()
         {
-            Mock<ControllerBase> controller = new Mock<ControllerBase>() { CallBase = true };
-
             byte[] timeStamp = new byte[] { 1, 2, 3, 4, 5, 6 };
             string stringContent = JsonConvert.SerializeObject(timeStamp);
 
-            byte[] converted = controller.Object.ConvertTimeStamp(stringContent);
+            byte[] converted = TimeStampConverter.ConvertTimeStamp(stringContent);
 
             Assert.True(converted.SequenceEqual(timeStamp));
         }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Eji.SwimTrack.DAL.Repositories;
 using Eji.SwimTrack.Models.Entities;
+using Eji.SwimTrack.Service.Converters;
 using Eji.SwimTrack.Service.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace Eji.SwimTrack.Service.Controllers
 {
     [Produces("application/json")]
     [Route("api/Swim")]
-    public class SwimController : ControllerBase
+    public class SwimController : Controller
     {
         ISwimRepository swimRepository = null;
         IMapper mapper = null;
@@ -79,7 +80,7 @@ namespace Eji.SwimTrack.Service.Controllers
         [HttpDelete("{id}/{timestamp}")]
         public void Delete(int id, string timestamp)
         {
-            byte[] tsBytes = ConvertTimeStamp(timestamp);
+            byte[] tsBytes = TimeStampConverter.ConvertTimeStamp(timestamp);
             if (tsBytes == null)
             {
                 throw new InvalidOperationException("Record timestamp required to delete"); 

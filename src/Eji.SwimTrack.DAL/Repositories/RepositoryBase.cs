@@ -108,6 +108,7 @@ namespace Eji.SwimTrack.DAL.Repositories
 
         public virtual async Task<int> AddAsync(T entity, bool persist = true)
         {
+            entity.Id = 0;
             await Table.AddAsync(entity);
 
             return persist ? await SaveChangesAsync() : 0;

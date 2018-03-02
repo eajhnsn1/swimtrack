@@ -21,6 +21,7 @@ namespace Eji.SwimTrack.Service.DataMapping
             CreateMap<CourseUnits, DistanceUnits>().ConvertUsing<CourseUnitToDistanceUnitTypeConverter>();
 
             CreateMap<Swim, SwimData>();
+            CreateMap<SwimData, Swim>();
         }
     }
 }

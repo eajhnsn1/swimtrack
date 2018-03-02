@@ -15,5 +15,7 @@ namespace Eji.SwimTrack.Service.Models
         public DistanceUnits DistanceUnits { get; set; }
 
         public Nullable<decimal> TimeSeconds { get; set; }
+
+        public byte[] Timestamp { get; set; }
     }
 }

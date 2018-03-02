@@ -85,6 +85,8 @@ namespace Eji.SwimTrack.Service.Controllers
             {
                 throw new InvalidOperationException("Record timestamp required to delete"); 
             }
+
+            swimRepository.Delete(id, tsBytes);
         }
     }
 }

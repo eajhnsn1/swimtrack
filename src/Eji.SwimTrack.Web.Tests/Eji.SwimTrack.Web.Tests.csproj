@@ -13,4 +13,13 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj" />
+    <ProjectReference Include="..\Eji.SwimTrack.Web\Eji.SwimTrack.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SwimServiceClientTests\" />
+  </ItemGroup>
+
 </Project>

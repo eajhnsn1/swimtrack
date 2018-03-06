@@ -5,11 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Eji.SwimTrack.Web.Models;
+using Eji.SwimTrack.Web.ServiceClient;
 
 namespace Eji.SwimTrack.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController(ISwimServiceClient client)
+        {
+
+        }
         public IActionResult Index()
         {
             return View();

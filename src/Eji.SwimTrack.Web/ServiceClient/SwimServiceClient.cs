@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -11,9 +12,16 @@ namespace Eji.SwimTrack.Web.ServiceClient
     /// </summary>
     public class SwimServiceClient : ISwimServiceClient
     {
+        const string CONFIG_SWIMAPIURI = "SwimTrackServices:SwimApiUrl";
         HttpClient httpClient = null;
 
-        public SwimServiceClient(HttpClient httpClient)
+        public Uri ApiUri
+        {
+            get;
+            internal set;
+        }
+
+        public SwimServiceClient(IConfiguration configuration, HttpClient httpClient)
         {
             if (httpClient == null)
             {
@@ -21,6 +29,25 @@ namespace Eji.SwimTrack.Web.ServiceClient
             }
 
             this.httpClient = httpClient;
+
+            LoadConfiguration(configuration);
+        }
+
+        private void LoadConfiguration(IConfiguration configuration)
+        {
+            string configValue = configuration[CONFIG_SWIMAPIURI];
+
+            try
+            {
+                ApiUri = new Uri(configValue);
+            }
+            catch (UriFormatException ex)
+            {
+                ex.Data["Service"] = nameof(SwimServiceClient);
+                ex.Data["ConfigurationValue"] = configValue;
+
+                throw;
+            }
         }
     }
 }

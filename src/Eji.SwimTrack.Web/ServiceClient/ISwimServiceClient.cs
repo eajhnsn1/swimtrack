@@ -10,5 +10,6 @@ namespace Eji.SwimTrack.Web.ServiceClient
     /// </summary>
     public interface ISwimServiceClient
     {
+        Uri ApiUri { get; }
     }
 }

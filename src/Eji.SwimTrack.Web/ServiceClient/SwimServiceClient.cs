@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Eji.SwimTrack.Service.Models;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +49,24 @@ namespace Eji.SwimTrack.Web.ServiceClient
                 ex.Data["ConfigurationValue"] = configValue;
 
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve all swims
+        /// </summary>
+        public async Task<IEnumerable<SwimData>> GetAllSwims()
+        {
+            HttpResponseMessage responseMessage = await httpClient.GetAsync(ApiUri);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string body = await responseMessage.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<List<SwimData>>(body);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Request failed: { responseMessage.StatusCode }");
             }
         }
     }

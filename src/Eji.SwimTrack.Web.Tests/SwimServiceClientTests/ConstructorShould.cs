@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
 {
-    public class SwimServiceClientShould
+    public class ConstructorShould
     {
         [Fact]
         public void ReadApiUrlFromConfig()

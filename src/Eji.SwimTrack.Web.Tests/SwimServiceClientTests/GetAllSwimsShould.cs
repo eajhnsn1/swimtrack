@@ -97,5 +97,18 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
                 Assert.Equal(106, s.TimeSeconds);
             });
         }
+
+        [Fact]
+        public async Task DeserializationFails_GivenServiceFailure()
+        {
+            handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()
+            {
+                StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                Content = new StringContent("")
+            });
+
+            SwimServiceClient client = new SwimServiceClient(configuration.Object, httpClient);
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await client.GetAllSwims());
+        }
     }
 }

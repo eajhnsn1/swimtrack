@@ -15,7 +15,7 @@ namespace Eji.SwimTrack.Web.ServiceClient
     public class SwimServiceClient : ISwimServiceClient
     {
         const string CONFIG_SWIMAPIURI = "SwimTrackServices:SwimApiUrl";
-        HttpClient httpClient = null;
+        IHttpClientFactory clientFactory = null;
 
         public Uri ApiUri
         {
@@ -23,14 +23,14 @@ namespace Eji.SwimTrack.Web.ServiceClient
             internal set;
         }
 
-        public SwimServiceClient(IConfiguration configuration, HttpClient httpClient)
+        public SwimServiceClient(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
-            if (httpClient == null)
+            if (httpClientFactory == null)
             {
-                throw new ArgumentNullException(nameof(httpClient));
+                throw new ArgumentNullException(nameof(httpClientFactory));
             }
 
-            this.httpClient = httpClient;
+            this.clientFactory = httpClientFactory;
 
             LoadConfiguration(configuration);
         }
@@ -57,6 +57,7 @@ namespace Eji.SwimTrack.Web.ServiceClient
         /// </summary>
         public async Task<IEnumerable<SwimData>> GetAllSwims()
         {
+            HttpClient httpClient = clientFactory.CreateClient();
             HttpResponseMessage responseMessage = await httpClient.GetAsync(ApiUri);
             if (responseMessage.IsSuccessStatusCode)
             {

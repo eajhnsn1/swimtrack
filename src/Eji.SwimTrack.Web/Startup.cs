@@ -28,8 +28,9 @@ namespace Eji.SwimTrack.Web
             // Guidance is to have ONE http client in the app
             // .NET Core 2.1 will include an httpclientfactory, which should be used
             // instead.  For now, just do it like this.
-            services.AddSingleton<HttpClient>();
-            services.AddTransient<ISwimServiceClient, SwimServiceClient>();
+            services.AddTransient<ISwimServiceClient, SwimServiceClient>()
+                    .AddHttpClient();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,9 +17,9 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             string dummyUrl = "http://www.example.com/api/swim";
             Mock<IConfiguration> configuration = new Mock<IConfiguration>();
             configuration.Setup(c => c["SwimTrackServices:SwimApiUrl"]).Returns(dummyUrl);
-            HttpClient httpClient = new HttpClient();
+            Mock<IHttpClientFactory> mockFactory = new Mock<IHttpClientFactory>();
 
-            SwimServiceClient swimClient = new SwimServiceClient(configuration.Object, httpClient);
+            SwimServiceClient swimClient = new SwimServiceClient(configuration.Object, mockFactory.Object);
 
             Assert.Equal(new Uri(dummyUrl), swimClient.ApiUri);
         }
@@ -30,10 +30,10 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             string dummyUrl = "garbage";
             Mock<IConfiguration> configuration = new Mock<IConfiguration>();
             configuration.Setup(c => c["SwimTrackServices:SwimApiUrl"]).Returns(dummyUrl);
-            HttpClient httpClient = new HttpClient();
+            Mock<IHttpClientFactory> mockFactory = new Mock<IHttpClientFactory>();
 
             UriFormatException exception = Assert.Throws<UriFormatException>(() => {
-                SwimServiceClient swimClient = new SwimServiceClient(configuration.Object, httpClient);
+                SwimServiceClient swimClient = new SwimServiceClient(configuration.Object, mockFactory.Object);
             });
 
             Assert.True(exception.Data.Contains("Service"));

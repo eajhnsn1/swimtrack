@@ -20,7 +20,8 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
     {
         Mock<FakeHttpMessageHandler> handler = null;
         Mock<IConfiguration> configuration = null;
-        HttpClient httpClient = null;
+        Mock<IHttpClientFactory> factory = null;
+
         readonly string dummyUrl = "http://www.example.com/api/swim";
 
         public GetAllSwimsShould()
@@ -29,7 +30,10 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             configuration.Setup(c => c["SwimTrackServices:SwimApiUrl"]).Returns(dummyUrl);
 
             handler = new Mock<FakeHttpMessageHandler>() { CallBase = true };
-            httpClient = new HttpClient(handler.Object);
+            HttpClient httpClient = new HttpClient(handler.Object);
+
+            factory = new Mock<IHttpClientFactory>();
+            factory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
         }
 
         private string GetTestResponse(string responseName)
@@ -54,7 +58,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
         {
             handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError));
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, httpClient);
+            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
             await Assert.ThrowsAsync<InvalidOperationException>(() => client.GetAllSwims());
 
             handler.Verify(h => h.Send(It.Is<HttpRequestMessage>(r => r.RequestUri == new Uri(dummyUrl))), Times.Once);
@@ -69,7 +73,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
                 Content = new StringContent(GetTestResponse("AllSwims.json"))
             });
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, httpClient);
+            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
             IEnumerable<SwimData> swimData = await client.GetAllSwims();
 
             Assert.NotNull(swimData);
@@ -86,7 +90,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
                 Content = new StringContent(GetTestResponse("OneSwim.json"))
             });
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, httpClient);
+            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
             IEnumerable<SwimData> swimData = await client.GetAllSwims();
 
             Assert.Collection(swimData, s =>
@@ -107,7 +111,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
                 Content = new StringContent("")
             });
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, httpClient);
+            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
             await Assert.ThrowsAsync<InvalidOperationException>(async () => await client.GetAllSwims());
         }
     }

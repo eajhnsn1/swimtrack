@@ -9,7 +9,7 @@ namespace Eji.SwimTrack.Service.Models.Common
     /// </summary>
     public abstract class BaseData
     {
-        int Id { get; set; }
-        byte[] Timestamp { get; set; }
+        public int Id { get; set; }
+        public byte[] Timestamp { get; set; }
     }
 }

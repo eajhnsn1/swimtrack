@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Eji.SwimTrack.Web\Eji.SwimTrack.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="HomeControllerTests\" />
+  </ItemGroup>
+
 </Project>

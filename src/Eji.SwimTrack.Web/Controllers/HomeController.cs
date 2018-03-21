@@ -6,18 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Eji.SwimTrack.Web.Models;
 using Eji.SwimTrack.Web.ServiceClient;
+using Eji.SwimTrack.Service.Models;
 
 namespace Eji.SwimTrack.Web.Controllers
 {
     public class HomeController : Controller
     {
+        ISwimServiceClient swimService = null;
+
         public HomeController(ISwimServiceClient client)
         {
-           
+            if (client == null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
 
+            this.swimService = client;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            IEnumerable<SwimData> data = await swimService.GetAllSwimsAsync();
+
             return View();
         }
 

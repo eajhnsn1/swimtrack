@@ -55,7 +55,7 @@ namespace Eji.SwimTrack.Web.ServiceClient
         /// <summary>
         /// Retrieve all swims
         /// </summary>
-        public async Task<IEnumerable<SwimData>> GetAllSwims()
+        public async Task<IEnumerable<SwimData>> GetAllSwimsAsync()
         {
             HttpClient httpClient = clientFactory.CreateClient();
             HttpResponseMessage responseMessage = await httpClient.GetAsync(ApiUri);

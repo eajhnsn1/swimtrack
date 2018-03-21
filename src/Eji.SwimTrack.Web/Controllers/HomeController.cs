@@ -13,6 +13,7 @@ namespace Eji.SwimTrack.Web.Controllers
     {
         public HomeController(ISwimServiceClient client)
         {
+           
 
         }
         public IActionResult Index()

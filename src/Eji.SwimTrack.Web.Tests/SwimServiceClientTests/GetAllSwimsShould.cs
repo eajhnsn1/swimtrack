@@ -59,7 +59,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError));
 
             SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            await Assert.ThrowsAsync<InvalidOperationException>(() => client.GetAllSwims());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => client.GetAllSwimsAsync());
 
             handler.Verify(h => h.Send(It.Is<HttpRequestMessage>(r => r.RequestUri == new Uri(dummyUrl))), Times.Once);
         }
@@ -74,7 +74,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             });
 
             SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            IEnumerable<SwimData> swimData = await client.GetAllSwims();
+            IEnumerable<SwimData> swimData = await client.GetAllSwimsAsync();
 
             Assert.NotNull(swimData);
             Assert.Equal(40, swimData.Count());
@@ -91,7 +91,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             });
 
             SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            IEnumerable<SwimData> swimData = await client.GetAllSwims();
+            IEnumerable<SwimData> swimData = await client.GetAllSwimsAsync();
 
             Assert.Collection(swimData, s =>
             {
@@ -112,7 +112,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             });
 
             SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () => await client.GetAllSwims());
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await client.GetAllSwimsAsync());
         }
     }
 }

@@ -27,6 +27,9 @@ namespace Eji.SwimTrack.Web.Controllers
         {
             IEnumerable<SwimData> data = await swimService.GetAllSwimsAsync();
 
+            // temporary just for the grid
+            ViewBag.Data = data;
+
             return View();
         }
 

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Eji.SwimTrack.Web</title>
 
+    <link href="~/css/mvc-grid.css" rel="stylesheet">
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -65,7 +67,11 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+    <script src="~/js/mvc-grid.js"></script>
 
     @RenderSection("Scripts", required: false)
+    <script>
+        $('.mvc-grid').mvcgrid();
+    </script>
 </body>
 </html>

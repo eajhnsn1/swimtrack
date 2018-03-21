@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NonFactors.Mvc.Grid;
 
 namespace Eji.SwimTrack.Web
 {
@@ -29,7 +30,8 @@ namespace Eji.SwimTrack.Web
             // .NET Core 2.1 will include an httpclientfactory, which should be used
             // instead.  For now, just do it like this.
             services.AddTransient<ISwimServiceClient, SwimServiceClient>()
-                    .AddHttpClient();
+                    .AddHttpClient()
+                    .AddMvcGrid();
 
         }
 

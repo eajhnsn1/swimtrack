@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Data.Tests", "Eji.SwimTrack.Data.Tests\Eji.SwimTrack.Data.Tests.csproj", "{A1D4D1ED-4CB2-4793-B12F-2FA7D58FE273}"
 EndProject
@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Service", "Ej
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Service.Tests", "Eji.SwimTrack.Service.Tests\Eji.SwimTrack.Service.Tests.csproj", "{5A91A828-A643-4A94-B1B2-99B2DDAC57B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Service.Models", "Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj", "{12C088DC-DEA6-4EED-81CD-5D02A84F68D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eji.SwimTrack.Service.Models", "Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj", "{12C088DC-DEA6-4EED-81CD-5D02A84F68D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Web", "Eji.SwimTrack.Web\Eji.SwimTrack.Web.csproj", "{B28FDFB7-EB67-481E-B180-301B025282E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eji.SwimTrack.Web.Tests", "Eji.SwimTrack.Web.Tests\Eji.SwimTrack.Web.Tests.csproj", "{33BB468A-C97A-41E4-A79D-2DF502AC4E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{12C088DC-DEA6-4EED-81CD-5D02A84F68D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12C088DC-DEA6-4EED-81CD-5D02A84F68D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12C088DC-DEA6-4EED-81CD-5D02A84F68D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28FDFB7-EB67-481E-B180-301B025282E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28FDFB7-EB67-481E-B180-301B025282E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28FDFB7-EB67-481E-B180-301B025282E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28FDFB7-EB67-481E-B180-301B025282E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BB468A-C97A-41E4-A79D-2DF502AC4E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BB468A-C97A-41E4-A79D-2DF502AC4E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BB468A-C97A-41E4-A79D-2DF502AC4E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BB468A-C97A-41E4-A79D-2DF502AC4E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

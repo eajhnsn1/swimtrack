@@ -1,0 +1,27 @@
+﻿@using Eji.SwimTrack.Service.Models;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        @{ 
+            IEnumerable<SwimData> swimData = ViewBag.Data;
+        }
+        @( Html
+           .Grid(swimData)
+           .Named("swims")
+           .Build(columns =>
+           {
+               columns.Add(model => model.Id).Titled("ID");
+               columns.Add(model => model.SwimDate).Titled("Date");
+               columns.Add(model => model.Completed).Titled("Completed");
+               columns.Add(model => model.ShortCourse).Titled("Short Course");
+               columns.Add(model => model.Distance).Titled("Distance");
+               columns.Add(model => model.DistanceUnits).Titled("Meters/Yards");
+               columns.Add(model => model.TimeSeconds).Titled("Seconds");
+           }).Sortable()
+           .Pageable()
+        )
+    </div>
+</div>

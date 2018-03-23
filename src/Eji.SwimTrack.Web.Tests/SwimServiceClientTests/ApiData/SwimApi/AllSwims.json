@@ -1,0 +1,282 @@
+﻿[
+  {
+    "Id": 2,
+    "Distance": 50,
+    "DistanceUnits": 0,
+    "TimeSeconds": 106,
+    "Timestamp": "AAAAAAAAF3E="
+  },
+  {
+    "Id": 3,
+    "Distance": 1150,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2306,
+    "Timestamp": "AAAAAAAAF3I="
+  },
+  {
+    "Id": 4,
+    "Distance": 1200,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2406,
+    "Timestamp": "AAAAAAAAF3M="
+  },
+  {
+    "Id": 5,
+    "Distance": 1250,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2506,
+    "Timestamp": "AAAAAAAAF3Q="
+  },
+  {
+    "Id": 6,
+    "Distance": 1300,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2606,
+    "Timestamp": "AAAAAAAAF3U="
+  },
+  {
+    "Id": 7,
+    "Distance": 1350,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2706,
+    "Timestamp": "AAAAAAAAF3Y="
+  },
+  {
+    "Id": 8,
+    "Distance": 1400,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2806,
+    "Timestamp": "AAAAAAAAF3c="
+  },
+  {
+    "Id": 9,
+    "Distance": 1450,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2906,
+    "Timestamp": "AAAAAAAAF3g="
+  },
+  {
+    "Id": 10,
+    "Distance": 1100,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2206,
+    "Timestamp": "AAAAAAAAF3k="
+  },
+  {
+    "Id": 11,
+    "Distance": 1500,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3006,
+    "Timestamp": "AAAAAAAAF3o="
+  },
+  {
+    "Id": 12,
+    "Distance": 1600,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3206,
+    "Timestamp": "AAAAAAAAF3s="
+  },
+  {
+    "Id": 13,
+    "Distance": 1650,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3306,
+    "Timestamp": "AAAAAAAAF3w="
+  },
+  {
+    "Id": 14,
+    "Distance": 1700,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3406,
+    "Timestamp": "AAAAAAAAF30="
+  },
+  {
+    "Id": 15,
+    "Distance": 1750,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3506,
+    "Timestamp": "AAAAAAAAF34="
+  },
+  {
+    "Id": 16,
+    "Distance": 1800,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3606,
+    "Timestamp": "AAAAAAAAF38="
+  },
+  {
+    "Id": 17,
+    "Distance": 1850,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3706,
+    "Timestamp": "AAAAAAAAF4A="
+  },
+  {
+    "Id": 18,
+    "Distance": 1900,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3806,
+    "Timestamp": "AAAAAAAAF4E="
+  },
+  {
+    "Id": 19,
+    "Distance": 1550,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3106,
+    "Timestamp": "AAAAAAAAF4I="
+  },
+  {
+    "Id": 20,
+    "Distance": 1050,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2106,
+    "Timestamp": "AAAAAAAAF4M="
+  },
+  {
+    "Id": 21,
+    "Distance": 1000,
+    "DistanceUnits": 0,
+    "TimeSeconds": 2006,
+    "Timestamp": "AAAAAAAAF4Q="
+  },
+  {
+    "Id": 22,
+    "Distance": 950,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1906,
+    "Timestamp": "AAAAAAAAF4U="
+  },
+  {
+    "Id": 23,
+    "Distance": 100,
+    "DistanceUnits": 0,
+    "TimeSeconds": 206,
+    "Timestamp": "AAAAAAAAF4Y="
+  },
+  {
+    "Id": 24,
+    "Distance": 150,
+    "DistanceUnits": 0,
+    "TimeSeconds": 306,
+    "Timestamp": "AAAAAAAAF4c="
+  },
+  {
+    "Id": 25,
+    "Distance": 200,
+    "DistanceUnits": 0,
+    "TimeSeconds": 406,
+    "Timestamp": "AAAAAAAAF4g="
+  },
+  {
+    "Id": 26,
+    "Distance": 250,
+    "DistanceUnits": 0,
+    "TimeSeconds": 506,
+    "Timestamp": "AAAAAAAAF4k="
+  },
+  {
+    "Id": 27,
+    "Distance": 300,
+    "DistanceUnits": 0,
+    "TimeSeconds": 606,
+    "Timestamp": "AAAAAAAAF4o="
+  },
+  {
+    "Id": 28,
+    "Distance": 350,
+    "DistanceUnits": 0,
+    "TimeSeconds": 706,
+    "Timestamp": "AAAAAAAAF4s="
+  },
+  {
+    "Id": 29,
+    "Distance": 400,
+    "DistanceUnits": 0,
+    "TimeSeconds": 806,
+    "Timestamp": "AAAAAAAAF4w="
+  },
+  {
+    "Id": 30,
+    "Distance": 450,
+    "DistanceUnits": 0,
+    "TimeSeconds": 906,
+    "Timestamp": "AAAAAAAAF40="
+  },
+  {
+    "Id": 31,
+    "Distance": 500,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1006,
+    "Timestamp": "AAAAAAAAF44="
+  },
+  {
+    "Id": 32,
+    "Distance": 550,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1106,
+    "Timestamp": "AAAAAAAAF48="
+  },
+  {
+    "Id": 33,
+    "Distance": 600,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1206,
+    "Timestamp": "AAAAAAAAF5A="
+  },
+  {
+    "Id": 34,
+    "Distance": 650,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1306,
+    "Timestamp": "AAAAAAAAF5E="
+  },
+  {
+    "Id": 35,
+    "Distance": 700,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1406,
+    "Timestamp": "AAAAAAAAF5I="
+  },
+  {
+    "Id": 36,
+    "Distance": 750,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1506,
+    "Timestamp": "AAAAAAAAF5M="
+  },
+  {
+    "Id": 37,
+    "Distance": 800,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1606,
+    "Timestamp": "AAAAAAAAF5Q="
+  },
+  {
+    "Id": 38,
+    "Distance": 850,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1706,
+    "Timestamp": "AAAAAAAAF5U="
+  },
+  {
+    "Id": 39,
+    "Distance": 900,
+    "DistanceUnits": 0,
+    "TimeSeconds": 1806,
+    "Timestamp": "AAAAAAAAF5Y="
+  },
+  {
+    "Id": 40,
+    "Distance": 1950,
+    "DistanceUnits": 0,
+    "TimeSeconds": 3906,
+    "Timestamp": "AAAAAAAAF5c="
+  },
+  {
+    "Id": 41,
+    "Distance": 2000,
+    "DistanceUnits": 0,
+    "TimeSeconds": 4006,
+    "Timestamp": "AAAAAAAAF5g="
+  }
+]

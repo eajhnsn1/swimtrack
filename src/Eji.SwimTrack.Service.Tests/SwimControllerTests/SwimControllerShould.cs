@@ -11,6 +11,7 @@ using Eji.SwimTrack.Service.Models;
 using Eji.SwimTrack.DAL.Repositories;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Eji.SwimTrack.Models;
 
 namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
 {
@@ -36,9 +37,9 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
 
             swims = new List<Swim>()
             {
-                new Swim() { Distance = 100, Id = 1, TimeSeconds = 500},
-                new Swim() { Distance = 200, Id = 10, TimeSeconds = 1000},
-                new Swim() { Distance = 400, Id = 100, TimeSeconds = 2000}
+                new Swim() { ShortCourse = true, DistanceUnits = CourseUnits.Meters, Distance = 100, Id = 1, TimeSeconds = 500},
+                new Swim() { ShortCourse = true, DistanceUnits = CourseUnits.Meters, Distance = 200, Id = 10, TimeSeconds = 1000},
+                new Swim() { ShortCourse = false, DistanceUnits = CourseUnits.Yards, Distance = 400, Id = 100, TimeSeconds = 2000}
             };
 
             Task<IEnumerable<Swim>> repoResult = Task<IEnumerable<Swim>>.FromResult<IEnumerable<Swim>>(swims);
@@ -55,9 +56,9 @@ namespace Eji.SwimTrack.Service.Tests.SwimControllerTests
 
             IEnumerable<SwimData> results = await controller.Get();
 
-            Assert.Collection(results, s => { Assert.Equal(100, s.Distance); },
-                                       s => { Assert.Equal(200, s.Distance); },
-                                       s => { Assert.Equal(400, s.Distance); });
+            Assert.Collection(results, s => { Assert.Equal(100, s.Distance); Assert.True(s.ShortCourse); },
+                                       s => { Assert.Equal(200, s.Distance); Assert.True(s.ShortCourse); },
+                                       s => { Assert.Equal(400, s.Distance); Assert.False(s.ShortCourse); });
         }
 
 

@@ -12,9 +12,10 @@ using System;
 namespace Eji.SwimTrack.DAL.EntityFramework.Migrations
 {
     [DbContext(typeof(SwimTrackContext))]
-    partial class SwimTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20180323020746_NewSwimColumns")]
+    partial class NewSwimColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +35,7 @@ namespace Eji.SwimTrack.DAL.EntityFramework.Migrations
 
                     b.Property<bool>("ShortCourse");
 
-                    b.Property<DateTime?>("SwimDate");
+                    b.Property<DateTime>("SwimDate");
 
                     b.Property<decimal?>("TimeSeconds")
                         .HasColumnType("decimal(8, 2)");

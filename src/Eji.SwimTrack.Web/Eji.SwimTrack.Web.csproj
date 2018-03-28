@@ -18,4 +18,9 @@
     <ProjectReference Include="..\Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Styles\" />
+    <Folder Include="wwwroot\css\bootstrap\" />
+  </ItemGroup>
+
 </Project>

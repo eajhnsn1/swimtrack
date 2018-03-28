@@ -17,7 +17,7 @@ gulp.task("copy", function () {
 });
 
 gulp.task("sass", function () {
-    return gulp.src('node_modules/bootstrap/scss/bootstrap.scss')
+    return gulp.src('Styles/bootstrap.scss')
         .pipe(sass())
         .pipe(gulp.dest('wwwroot/css/bootstrap'))
         .pipe(minify())

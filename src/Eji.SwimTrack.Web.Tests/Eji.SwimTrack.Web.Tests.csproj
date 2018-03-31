@@ -7,11 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="HomeControllerTests\**" />
+    <EmbeddedResource Remove="HomeControllerTests\**" />
+    <None Remove="HomeControllerTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="SwimServiceClientTests\ApiData\SwimApi\AllSwims.json" />
     <None Remove="SwimServiceClientTests\ApiData\SwimApi\OneSwim.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="Moq" Version="4.8.2" />
     <PackageReference Include="xunit" Version="2.3.1" />
@@ -27,10 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Eji.SwimTrack.Service.Models\Eji.SwimTrack.Service.Models.csproj" />
     <ProjectReference Include="..\Eji.SwimTrack.Web\Eji.SwimTrack.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="HomeControllerTests\" />
   </ItemGroup>
 
 </Project>

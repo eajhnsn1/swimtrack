@@ -18,6 +18,11 @@ namespace Eji.SwimTrack.Web.Models
         {
             get
             {
+                if (swim.Distance <= 0)
+                {
+                    return "Undefined";
+                }
+
                 return $"{swim.Distance} { GetDistanceName(swim.DistanceUnits)}";
             }
         }

@@ -9,13 +9,18 @@ namespace Eji.SwimTrack.Service.Models
     public class SwimData : BaseData
     {
         public bool ShortCourse { get; set; }
-
         public bool Completed { get; set; }
         public DateTime? SwimDate { get; set; }
+
         public int Distance { get; set; }
 
         public DistanceUnits DistanceUnits { get; set; }
 
-        public Nullable<decimal> TimeSeconds { get; set; }
+        public Stroke Stroke { get; set; }
+
+        public int? Heat { get; set; }
+        public int? Lane { get; set; }
+
+        public decimal? TimeSeconds { get; set; }
     }
 }

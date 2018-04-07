@@ -37,6 +37,11 @@ namespace Eji.SwimTrack.Web.Models
             }
         }
 
+        public Stroke Stroke
+        {
+            get { return swim.Stroke; }
+        }
+
         public int Distance
         {
             get { return swim.Distance; }

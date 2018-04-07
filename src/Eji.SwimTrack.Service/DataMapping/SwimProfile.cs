@@ -19,6 +19,7 @@ namespace Eji.SwimTrack.Service.DataMapping
         public SwimProfile()
         {
             CreateMap<CourseUnits, DistanceUnits>().ConvertUsing<CourseUnitToDistanceUnitTypeConverter>();
+            CreateMap<SwimStroke, Stroke>().ConvertUsing<SwimStrokeToStrokeTypeConverter>();
 
             CreateMap<Swim, SwimData>();
             CreateMap<SwimData, Swim>();

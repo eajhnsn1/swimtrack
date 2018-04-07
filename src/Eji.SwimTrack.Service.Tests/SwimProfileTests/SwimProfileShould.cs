@@ -1,16 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
 using Xunit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Eji.SwimTrack.Models.Entities;
 using Eji.SwimTrack.Service.Models;
 using Eji.SwimTrack.Service.Models.Common;
 using Eji.SwimTrack.Service.DataMapping;
 using Eji.SwimTrack.Models;
+using FluentAssertions;
 
 namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
 {
@@ -32,14 +27,20 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
             swim.Id = 100;
             swim.TimeSeconds = 123.45M;
             swim.Timestamp = new byte[] { 1, 2, 3 };
+            swim.Stroke = SwimStroke.Backstroke;
+            swim.Heat = 10;
+            swim.Lane = 4;
 
             SwimData swimData = Mapper.Map<SwimData>(swim);
 
-            Assert.NotNull(swimData);
-            Assert.Equal(swim.Distance, swimData.Distance);
-            Assert.Equal(DistanceUnits.Meters, swimData.DistanceUnits);
-            Assert.Equal(swim.Id, swimData.Id);
-            Assert.Equal(swim.TimeSeconds, swimData.TimeSeconds);
+            swimData.Should().NotBeNull();
+            swimData.Distance.Should().Be(swim.Distance);
+            swimData.DistanceUnits.Should().Be(DistanceUnits.Meters);
+            swimData.Id.Should().Be(swim.Id);
+            swimData.TimeSeconds.Should().Be(swim.TimeSeconds);
+            swimData.Heat.Should().Be(swim.Heat);
+            swimData.Lane.Should().Be(swim.Lane);
+            swimData.Stroke.Should().Be(Stroke.Backstroke);
         }
     }
 }

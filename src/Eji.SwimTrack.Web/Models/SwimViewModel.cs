@@ -37,6 +37,16 @@ namespace Eji.SwimTrack.Web.Models
             }
         }
 
+        public int? Heat
+        {
+            get { return swim.Heat; }
+        }
+
+        public int? Lane
+        {
+            get { return swim.Lane; }
+        }
+
         public Stroke Stroke
         {
             get { return swim.Stroke; }

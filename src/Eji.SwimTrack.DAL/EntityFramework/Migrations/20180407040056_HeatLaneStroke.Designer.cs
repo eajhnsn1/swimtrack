@@ -12,9 +12,10 @@ using System;
 namespace Eji.SwimTrack.DAL.EntityFramework.Migrations
 {
     [DbContext(typeof(SwimTrackContext))]
-    partial class SwimTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20180407040056_HeatLaneStroke")]
+    partial class HeatLaneStroke
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

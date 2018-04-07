@@ -26,6 +26,16 @@ namespace Eji.SwimTrack.Models.Entities
         public bool ShortCourse { get; set; }
 
         /// <summary>
+        /// Heat Number
+        /// </summary>
+        public int? Heat { get; set; }
+
+        /// <summary>
+        /// Lane Number
+        /// </summary>
+        public int? Lane { get; set; }
+
+        /// <summary>
         /// Length of the swim
         /// </summary>
         public int Distance { get; set; }
@@ -34,6 +44,11 @@ namespace Eji.SwimTrack.Models.Entities
         /// Meter or Yard metric
         /// </summary>
         public CourseUnits DistanceUnits { get; set; }
+
+        /// <summary>
+        /// Which of the 4 strokes
+        /// </summary>
+        public SwimStroke Stroke { get; set; }
 
         /// <summary>
         /// Swim time

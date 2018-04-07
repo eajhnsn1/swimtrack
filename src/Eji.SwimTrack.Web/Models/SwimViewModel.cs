@@ -14,7 +14,35 @@ namespace Eji.SwimTrack.Web.Models
     {
         SwimData swim = null;
 
-        public string Distance
+        public DateTime? SwimDate
+        {
+            get { return swim.SwimDate; }
+        }
+
+        public string TimeText
+        {
+            get { return $"{swim.TimeSeconds} s."; }
+        }
+
+        public Decimal? TimeSeconds
+        {
+            get { return swim.TimeSeconds; }
+        }
+
+        public string CourseDescription
+        {
+            get
+            {
+                return swim.ShortCourse ? "short course" : "long course";
+            }
+        }
+
+        public int Distance
+        {
+            get { return swim.Distance; }
+        }
+
+        public string DistanceText
         {
             get
             {

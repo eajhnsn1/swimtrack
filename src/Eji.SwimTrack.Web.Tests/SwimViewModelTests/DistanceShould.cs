@@ -25,7 +25,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimViewModelTests
             swimData.Distance = 50;
             swimData.DistanceUnits = DistanceUnits.Meters;
 
-            swimVm.Distance.Should().Be("50 meter");
+            swimVm.DistanceText.Should().Be("50 meter");
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimViewModelTests
         {
             swimData.Distance = distance;
 
-            swimVm.Distance.Should().Be("Undefined");
+            swimVm.DistanceText.Should().Be("Undefined");
         }
 
     }

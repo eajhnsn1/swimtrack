@@ -22,5 +22,13 @@ namespace Eji.SwimTrack.Service.Models
         public int? Lane { get; set; }
 
         public decimal? TimeSeconds { get; set; }
+
+        public bool IsRelay { get; set; }
+
+        public string Notes { get; set; }
+
+        public bool? DQ { get; set; }
+
+        public int? EventNumber { get; set; }
     }
 }

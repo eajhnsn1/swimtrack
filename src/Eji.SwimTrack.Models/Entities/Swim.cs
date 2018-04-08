@@ -26,6 +26,11 @@ namespace Eji.SwimTrack.Models.Entities
         public bool ShortCourse { get; set; }
 
         /// <summary>
+        /// Event# at a meet
+        /// </summary>
+        public int? EventNumber { get; set; }
+
+        /// <summary>
         /// Heat Number
         /// </summary>
         public int? Heat { get; set; }
@@ -53,6 +58,16 @@ namespace Eji.SwimTrack.Models.Entities
         /// <summary>
         /// Swim time
         /// </summary>
-        public Nullable<decimal> TimeSeconds { get; set; }
+        public decimal? TimeSeconds { get; set; }
+
+        /// <summary>
+        /// Relay swim 
+        /// </summary>
+        public bool IsRelay { get; set; }
+
+        [Column(TypeName="nvarchar(max)")]
+        public string Notes { get; set; }
+
+        public bool? DQ { get; set; }
     }
 }

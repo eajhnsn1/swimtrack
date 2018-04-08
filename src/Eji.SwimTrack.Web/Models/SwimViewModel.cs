@@ -83,6 +83,26 @@ namespace Eji.SwimTrack.Web.Models
             }
         }
 
+        public int? EventNumber
+        {
+            get { return swim.EventNumber; }
+        }
+
+        public bool? IsRelay
+        {
+            get { return swim.IsRelay; }
+        }
+
+        public string Notes
+        {
+            get { return swim.Notes; }
+        }
+
+        public bool? DQ
+        {
+            get { return swim.DQ; }
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>

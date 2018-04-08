@@ -12,9 +12,10 @@ using System;
 namespace Eji.SwimTrack.DAL.EntityFramework.Migrations
 {
     [DbContext(typeof(SwimTrackContext))]
-    partial class SwimTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20180408023328_RelayNotesEventNumber")]
+    partial class RelayNotesEventNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

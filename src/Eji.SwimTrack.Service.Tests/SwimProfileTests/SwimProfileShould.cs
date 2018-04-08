@@ -30,6 +30,10 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
             swim.Stroke = SwimStroke.Backstroke;
             swim.Heat = 10;
             swim.Lane = 4;
+            swim.IsRelay = true;
+            swim.Notes = "test";
+            swim.EventNumber = 100;
+            swim.DQ = true;
 
             SwimData swimData = Mapper.Map<SwimData>(swim);
 
@@ -41,6 +45,10 @@ namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
             swimData.Heat.Should().Be(swim.Heat);
             swimData.Lane.Should().Be(swim.Lane);
             swimData.Stroke.Should().Be(Stroke.Backstroke);
+            swimData.IsRelay.Should().Be(swim.IsRelay);
+            swimData.DQ.Should().Be(swim.DQ);
+            swimData.Notes.Should().Be(swim.Notes);
+            swimData.EventNumber.Should().Be(swim.EventNumber);
         }
     }
 }

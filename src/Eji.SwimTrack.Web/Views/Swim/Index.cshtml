@@ -11,13 +11,13 @@
             .Named("swims")
             .Build(columns =>
             {
-                columns.Add(model => model.SwimDate).Titled("Date");
+                columns.Add(model => model.EventNumber).Titled("Event #").Sortable(false);
                 columns.Add(model => model.Distance).Titled("Event").RenderedAs(model => model.DistanceText);
                 columns.Add(model => model.Stroke).Titled("Stroke");
-                columns.Add(model => model.Heat).Titled("Heat");
-                columns.Add(model => model.Lane).Titled("Lane");
+                columns.Add(model => model.Heat).Titled("Heat #");
+                columns.Add(model => model.Lane).Titled("Lane #");
                 columns.Add(model => model.TimeSeconds).Titled("Time").RenderedAs(model => model.TimeText);
-                columns.Add(model => model.CourseDescription).Titled("Course");
+                columns.Add(model => model.SwimDate).Titled("Date");
             }).Sortable()
             .Pageable(pager =>
             {

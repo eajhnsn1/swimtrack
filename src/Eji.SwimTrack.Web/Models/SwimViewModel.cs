@@ -83,6 +83,14 @@ namespace Eji.SwimTrack.Web.Models
             }
         }
 
+        public string Event
+        {
+            get
+            {
+                return $"{Distance} { GetSwimName(swim.Stroke, swim.IsRelay) }";
+            }
+        }
+
         public int? EventNumber
         {
             get { return swim.EventNumber; }
@@ -101,6 +109,40 @@ namespace Eji.SwimTrack.Web.Models
         public bool? DQ
         {
             get { return swim.DQ; }
+        }
+
+        private string GetSwimName(Stroke stroke, bool relay)
+        {
+            string name = "";
+            switch (stroke)
+            {
+                case Stroke.Backstroke:
+                    name = "Backstroke";
+                    break;
+                case Stroke.Breaststroke:
+                    name = "Breaststroke";
+                    break;
+                case Stroke.Butterfly:
+                    name = "Butterfly";
+                    break;
+                case Stroke.Freestyle:
+                    name = "Freestyle";
+                    break;
+                case Stroke.Medley:
+                    name = "Medley";
+                    break;
+            }
+
+            if (!relay && stroke == Stroke.Medley)
+            {
+                name = "Individual Medley";
+            }
+            else if (relay)
+            {
+                name = $"{ name } Relay";
+            }
+
+            return name;
         }
 
         /// <summary>

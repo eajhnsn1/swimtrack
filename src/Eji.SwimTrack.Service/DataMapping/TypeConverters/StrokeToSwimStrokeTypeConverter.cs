@@ -29,6 +29,9 @@ namespace Eji.SwimTrack.Service.DataMapping.TypeConverters
                 case Stroke.Freestyle:
                     return SwimStroke.Freestyle;
 
+                case Stroke.Medley:
+                    return SwimStroke.Medley;
+
                 default:
                     return default(SwimStroke);
             }

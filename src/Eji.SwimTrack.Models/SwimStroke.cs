@@ -10,6 +10,7 @@ namespace Eji.SwimTrack.Models
         Butterfly = 1,
         Backstroke = 2,
         Breaststroke = 3,
-        Freestyle = 4
+        Freestyle = 4,
+        Medley = 5
     }
 }

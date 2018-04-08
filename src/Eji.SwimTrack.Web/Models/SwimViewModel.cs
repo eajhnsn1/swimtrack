@@ -1,5 +1,6 @@
 ﻿using Eji.SwimTrack.Service.Models;
 using Eji.SwimTrack.Service.Models.Common;
+using Eji.SwimTrack.Web.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,18 @@ namespace Eji.SwimTrack.Web.Models
 
         public string TimeText
         {
-            get { return $"{swim.TimeSeconds} s."; }
+            get
+            {
+                if (swim.TimeSeconds.HasValue)
+                {
+                    SwimTime swimTime = SwimTime.FromSeconds(swim.TimeSeconds.Value);
+                    return swimTime.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
         }
 
         public Decimal? TimeSeconds

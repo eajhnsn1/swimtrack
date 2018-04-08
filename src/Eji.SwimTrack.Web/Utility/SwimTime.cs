@@ -25,13 +25,33 @@ namespace Eji.SwimTrack.Web.Utility
             get; internal set;
         }
 
+        public override string ToString()
+        {
+            string total = "";
+
+            total = (Seconds + (Hundredths / 100.0)).ToString("0.00");
+
+            if (Minutes > 0)
+            {
+                if (Seconds < 10)
+                {
+                    total = $"{Minutes}:0{total}";
+                }
+                else
+                {
+                    total = $"{Minutes}:{total}";
+                }
+            }
+
+            return total;
+        }
+
         public static SwimTime FromSeconds(decimal seconds)
         {
             if (seconds < 0)
             {
                 throw new ArgumentException($"{ nameof(seconds) } must be greater than or equal to zero.", nameof(seconds));
             }
-
 
             int min = (int)seconds / 60;
             int sec = (int)seconds % 60;

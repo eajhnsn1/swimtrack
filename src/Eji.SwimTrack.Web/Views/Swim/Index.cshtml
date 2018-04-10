@@ -5,16 +5,15 @@
 @model SwimIndexViewModel;
 
 <div class="row" style="margin-top:2rem;">
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-2">
         <div class="card" style="width:100%">
             <div class="card-header bg-primary text-light" >Swim Filter</div>
             <div class="card-body">
-                <p class="card-text">Filter the list of swims</p>
-                <a href="#" class="btn btn-primary">Apply</a>
+                @Html.EditorFor(model => model.Filter)
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8">
+    <div class="col-xs-12 col-sm-10">
         @( Html
             .Grid(Model.Swims)
             .Named("swims")

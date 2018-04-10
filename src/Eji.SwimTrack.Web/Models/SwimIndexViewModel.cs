@@ -18,15 +18,22 @@ namespace Eji.SwimTrack.Web.Models
             get { return swims; }
         }
 
+        public SwimFilterModel Filter
+        {
+            get; set;
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
-        public SwimIndexViewModel(IEnumerable<SwimData> swims)
+        public SwimIndexViewModel(IEnumerable<SwimData> swims, SwimFilterModel filter)
         {
             if (swims == null)
             {
                 throw new ArgumentNullException(nameof(swims));
             }
+
+            Filter = filter;
 
             this.swims.AddRange(swims.Select(s => new SwimViewModel(s)));
         }

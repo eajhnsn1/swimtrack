@@ -24,6 +24,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
             List<SwimData> swims = new List<SwimData>()
             {
                 new SwimData() {
+                    Stroke = Stroke.Backstroke,
                     Distance = 50,
                     DistanceUnits = DistanceUnits.Yards,
                     Completed = false,
@@ -31,6 +32,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
                     SwimDate = new DateTime(2018, 4, 1),
                 },
                 new SwimData() {
+                    Stroke = Stroke.Freestyle,
                     Distance = 100,
                     DistanceUnits = DistanceUnits.Yards,
                     Completed = false,
@@ -46,14 +48,25 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
         }
 
         [Fact]
-        public async Task CreateSwimIndexViewModel()
+        public async Task ReturnAllSwims_GivenNoFilter()
         {
-            ViewResult result = await swimController.Index() as ViewResult;
+            ViewResult result = await swimController.Index(null) as ViewResult;
 
             SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
             vm.Should().NotBeNull();
 
             vm.Swims.Should().HaveCount(2);
+        }
+
+        [Fact]
+        public async Task FilterByStroke_GivenStrokeFilter()
+        {
+            ViewResult result = await swimController.Index(null) as ViewResult;
+
+            SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
+            vm.Should().NotBeNull();
+
+            vm.Swims.Should().HaveCount(1);
         }
     }
 }

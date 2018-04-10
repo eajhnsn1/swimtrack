@@ -53,7 +53,6 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
             ViewResult result = await swimController.Index(null) as ViewResult;
 
             SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
-            vm.Should().NotBeNull();
 
             vm.Swims.Should().HaveCount(2);
         }
@@ -61,10 +60,12 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
         [Fact]
         public async Task FilterByStroke_GivenStrokeFilter()
         {
-            ViewResult result = await swimController.Index(null) as ViewResult;
+            SwimFilterModel filter = new SwimFilterModel();
+            filter.Stroke = Stroke.Freestyle;
+
+            ViewResult result = await swimController.Index(filter) as ViewResult;
 
             SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
-            vm.Should().NotBeNull();
 
             vm.Swims.Should().HaveCount(1);
         }

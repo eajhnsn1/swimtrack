@@ -18,6 +18,8 @@ namespace Eji.SwimTrack.Web.Models
             get { return swims; }
         }
 
+        public int[] SelectedSwims { get; set; }
+
         public SwimFilterModel Filter
         {
             get; set;

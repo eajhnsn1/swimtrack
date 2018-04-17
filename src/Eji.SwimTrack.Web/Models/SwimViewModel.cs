@@ -36,6 +36,11 @@ namespace Eji.SwimTrack.Web.Models
             }
         }
 
+        public int Id
+        {
+            get { return swim.Id; }
+        }
+
         public Decimal? TimeSeconds
         {
             get { return swim.TimeSeconds; }

@@ -2,6 +2,10 @@
     padding-bottom: 20px;
 }
 
+.selectColumn {
+    width:1em;
+}
+
 .heatColumn{
     width:5em;
 }

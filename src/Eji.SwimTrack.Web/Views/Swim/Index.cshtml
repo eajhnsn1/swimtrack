@@ -14,30 +14,45 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-10">
-            @{ 
-                Func<int, object> formatCheckBox = @<input type="checkbox" value="@item" class="form-check" />;
-            }
-            @using (Html.BeginForm("Execute", "Swim"))
-            {
-                @( Html
-                    .Grid(Model.Swims)
-                    .Named("swims")
-                    .Build(columns =>
+            <div class="row">
+                <div class="col-xs-12 ml-auto mr-4">
+                    <span class="form-inline">
+                        With Selected:
+                        <select class="form-control ml-2">
+                            <option value="">Action...</option>
+                            <option value="PrintSheet">Print Sheet</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 w-100 ml-1 mt-2">
+                    @{ 
+                        Func<int, object> formatCheckBox = @<input type="checkbox" value="@item" class="form-check" />;
+                    }
+                    @using (Html.BeginForm("Execute", "Swim"))
                     {
-                        columns.Add().RenderedAs(model => formatCheckBox(model.Id)).Css("selectColumn");
-                        columns.Add(model => model.EventNumber).Titled("Event #").Sortable(false).Css("eventNumberColumn");
-                        columns.Add(model => model.Stroke).Titled("Event").RenderedAs(model => model.Event);
-                        columns.Add(model => model.Heat).Titled("Heat #").Css("heatColumn");
-                        columns.Add(model => model.Lane).Titled("Lane #").Css("laneColumn");
-                        columns.Add(model => model.TimeSeconds).Titled("Time").RenderedAs(model => model.TimeText);
-                        columns.Add(model => model.SwimDate).Titled("Date");
-                    }).Sortable()
-                    .Pageable(pager =>
-                    {
-                        pager.RowsPerPage = 50;
-                    })
-                )
-            }
+                        @( Html
+                            .Grid(Model.Swims)
+                            .Named("swims")
+                            .Build(columns =>
+                            {
+                                columns.Add().RenderedAs(model => formatCheckBox(model.Id)).Css("selectColumn");
+                                columns.Add(model => model.EventNumber).Titled("Event #").Sortable(false).Css("eventNumberColumn");
+                                columns.Add(model => model.Stroke).Titled("Event").RenderedAs(model => model.Event);
+                                columns.Add(model => model.Heat).Titled("Heat #").Css("heatColumn");
+                                columns.Add(model => model.Lane).Titled("Lane #").Css("laneColumn");
+                                columns.Add(model => model.TimeSeconds).Titled("Time").RenderedAs(model => model.TimeText);
+                                columns.Add(model => model.SwimDate).Titled("Date");
+                            }).Sortable()
+                            .Pageable(pager =>
+                            {
+                                pager.RowsPerPage = 50;
+                            })
+                        )
+                    }
+                </div>
+            </div>
         </div>
     </div>
 

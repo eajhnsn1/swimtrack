@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eji.SwimTrack.Web.Controllers
 {
+    
     public class SwimController : Controller
     {
         ISwimServiceClient swimService = null;
@@ -25,6 +26,15 @@ namespace Eji.SwimTrack.Web.Controllers
             }
 
             swimService = client;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Execute(SwimListCommand command, int[] selectedSwim)
+        {
+            await Task.Delay(1);
+
+
+            return new OkResult();
         }
 
         public async Task<IActionResult> Index([FromQuery]SwimFilterModel filter)

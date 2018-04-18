@@ -4,66 +4,66 @@
 }
 @model SwimIndexViewModel;
 
-    <div class="row" style="margin-top:2rem;">
-        <div class="col-xs-12 col-sm-2">
-            <div class="card" style="width:100%">
-                <div class="card-header bg-primary text-light">Swim Filter</div>
-                <div class="card-body">
-                    @Html.EditorFor(model => model.Filter)
+    @using (Html.BeginForm("Execute", "Swim", FormMethod.Post, new { id = "swimListingForm", target = "_blank" }))
+    {
+        <div class="row" style="margin-top:2rem;">
+            <div class="col-xs-12 col-sm-2">
+                <div class="card" style="width:100%">
+                    <div class="card-header bg-primary text-light">Swim Filter</div>
+                    <div class="card-body">
+                        @Html.EditorFor(model => model.Filter)
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-10">
-            <div class="row">
-                <div class="col-xs-12 ml-auto mr-4">
-                    <span class="form-inline">
-                        With Selected:
-                        <select class="form-control ml-2" id="action">
-                            <option value="">Action...</option>
-                            <option value="PrintSheet">Print Sheet</option>
-                        </select>
-                    </span>
+            <div class="col-xs-12 col-sm-10">
+                <div class="row">
+                    <div class="col-xs-12 ml-auto mr-4">
+                        <span class="form-inline">
+                            With Selected:
+                            <select class="form-control ml-2" id="command" name="command">
+                                <option value="">Action...</option>
+                                <option value="PrintSheet">Print Sheet</option>
+                            </select>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 w-100 ml-1 mt-2">
-                    @{ 
-                        Func<int, object> formatCheckBox = @<input type="checkbox" value="@item" class="form-check" />;
-                    }
-                    @using (Html.BeginForm("Execute", "Swim", FormMethod.Post, new { id = "swimListingForm", target="_blank" }))
-                    {
+                <div class="row">
+                    <div class="col-xs-12 w-100 ml-1 mt-2">
+                        @{
+                            Func<int, object> formatCheckBox = @<input type="checkbox" name="selectedSwim" value="@item" class="form-check" />;
+                        }
                         @( Html
-                            .Grid(Model.Swims)
-                            .Named("swims")
-                            .Build(columns =>
-                            {
-                                columns.Add().RenderedAs(model => formatCheckBox(model.Id)).Css("selectColumn");
-                                columns.Add(model => model.EventNumber).Titled("Event #").Sortable(false).Css("eventNumberColumn");
-                                columns.Add(model => model.Stroke).Titled("Event").RenderedAs(model => model.Event);
-                                columns.Add(model => model.Heat).Titled("Heat #").Css("heatColumn");
-                                columns.Add(model => model.Lane).Titled("Lane #").Css("laneColumn");
-                                columns.Add(model => model.TimeSeconds).Titled("Time").RenderedAs(model => model.TimeText);
-                                columns.Add(model => model.SwimDate).Titled("Date");
-                            }).Sortable()
-                            .Pageable(pager =>
-                            {
-                                pager.RowsPerPage = 50;
-                            })
+                                            .Grid(Model.Swims)
+                                            .Named("swims")
+                                            .Build(columns =>
+                                            {
+                                                columns.Add().RenderedAs(model => formatCheckBox(model.Id)).Css("selectColumn");
+                                                columns.Add(model => model.EventNumber).Titled("Event #").Sortable(false).Css("eventNumberColumn");
+                                                columns.Add(model => model.Stroke).Titled("Event").RenderedAs(model => model.Event);
+                                                columns.Add(model => model.Heat).Titled("Heat #").Css("heatColumn");
+                                                columns.Add(model => model.Lane).Titled("Lane #").Css("laneColumn");
+                                                columns.Add(model => model.TimeSeconds).Titled("Time").RenderedAs(model => model.TimeText);
+                                                columns.Add(model => model.SwimDate).Titled("Date");
+                                            }).Sortable()
+                                            .Pageable(pager =>
+                                            {
+                                                pager.RowsPerPage = 50;
+                                            })
                         )
-                    }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 
-@section Scripts 
-{
-    <script>
-        $(document).ready(function () {
-            $("#action").on("change", function () {
-                // post the form
-                $("#swimListingForm").submit();
+    @section Scripts
+        {
+        <script>
+            $(document).ready(function () {
+                $("#command").on("change", function () {
+                    // post the form
+                    $("#swimListingForm").submit();
+                })
             })
-        })
-    </script>
-}
+        </script>
+    }

@@ -13,6 +13,8 @@ namespace Eji.SwimTrack.Web.ServiceClient
     {
         Uri ApiUri { get; }
 
+        Task<SwimData> GetSwim(int swimId);
+
         Task<IEnumerable<SwimData>> GetAllSwimsAsync();
     }
 }

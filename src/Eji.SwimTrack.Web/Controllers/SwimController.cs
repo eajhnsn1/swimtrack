@@ -34,10 +34,12 @@ namespace Eji.SwimTrack.Web.Controllers
             await Task.Delay(1);
 
             List<Task> retrieves = new List<Task>();
-            foreach (int swim in selectedSwim)
+            foreach (int swimId in selectedSwim)
             {
-
+                retrieves.Add(swimService.GetSwim(swimId));
             }
+
+            Task.WaitAll(retrieves.ToArray());
 
             return new OkResult();
         }

@@ -31,15 +31,13 @@ namespace Eji.SwimTrack.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Execute(SwimListCommand command, int[] selectedSwim)
         {
-            await Task.Delay(1);
-
             List<Task> retrieves = new List<Task>();
             foreach (int swimId in selectedSwim)
             {
                 retrieves.Add(swimService.GetSwim(swimId));
             }
 
-            Task.WaitAll(retrieves.ToArray());
+            await Task.WhenAll(retrieves.ToArray());
 
             return new OkResult();
         }

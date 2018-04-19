@@ -16,65 +16,29 @@ using Xunit;
 
 namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
 {
-    public class GetAllSwimsShould
+    public class GetAllSwimsShould : SwimServiceClientTestBase
     {
-        Mock<FakeHttpMessageHandler> handler = null;
-        Mock<IConfiguration> configuration = null;
-        Mock<IHttpClientFactory> factory = null;
-
-        readonly string dummyUrl = "http://www.example.com/api/swim";
-
         public GetAllSwimsShould()
         {
-            configuration = new Mock<IConfiguration>();
-            configuration.Setup(c => c["SwimTrackServices:SwimApiUrl"]).Returns(dummyUrl);
-
-            handler = new Mock<FakeHttpMessageHandler>() { CallBase = true };
-            HttpClient httpClient = new HttpClient(handler.Object);
-
-            factory = new Mock<IHttpClientFactory>();
-            factory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
         }
 
-        private string GetTestResponse(string responseName)
-        {
-            Assembly asm = Assembly.GetExecutingAssembly();
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetType(), $"ApiData.SwimApi.{responseName}"))
-            {
-                if (stream == null)
-                {
-                    throw new FileNotFoundException();
-                }
-
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
 
         [Fact]
         public async Task MakeHttpRequest()
         {
-            handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError));
+            Handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError));
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            await Assert.ThrowsAsync<InvalidOperationException>(() => client.GetAllSwimsAsync());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => Client.GetAllSwimsAsync());
 
-            handler.Verify(h => h.Send(It.Is<HttpRequestMessage>(r => r.RequestUri == new Uri(dummyUrl))), Times.Once);
+            Handler.Verify(h => h.Send(It.Is<HttpRequestMessage>(r => r.RequestUri == new Uri(dummyUrl))), Times.Once);
         }
 
         [Fact]
         public async Task DeserializeMany_GivenSuccess()
         {
-            handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()
-            {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Content = new StringContent(GetTestResponse("AllSwims.json"))
-            });
+            SetupResponseContent("AllSwims.json");
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            IEnumerable<SwimData> swimData = await client.GetAllSwimsAsync();
+            IEnumerable<SwimData> swimData = await Client.GetAllSwimsAsync();
 
             Assert.NotNull(swimData);
             Assert.Equal(40, swimData.Count());
@@ -84,14 +48,9 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
         [Fact]
         public async Task DeserializeOne_GivenSuccess()
         {
-            handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()
-            {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Content = new StringContent(GetTestResponse("OneSwim.json"))
-            });
+            SetupResponseContent("OneSwim.json");
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            IEnumerable<SwimData> swimData = await client.GetAllSwimsAsync();
+            IEnumerable<SwimData> swimData = await Client.GetAllSwimsAsync();
 
             Assert.Collection(swimData, s =>
             {
@@ -105,14 +64,9 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
         [Fact]
         public async Task DeserializationFails_GivenServiceFailure()
         {
-            handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()
-            {
-                StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                Content = new StringContent("")
-            });
+            SetupResponseFailure(System.Net.HttpStatusCode.InternalServerError);
 
-            SwimServiceClient client = new SwimServiceClient(configuration.Object, factory.Object);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () => await client.GetAllSwimsAsync());
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await Client.GetAllSwimsAsync());
         }
     }
 }

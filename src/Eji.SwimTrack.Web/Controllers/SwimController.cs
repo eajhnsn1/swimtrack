@@ -33,6 +33,11 @@ namespace Eji.SwimTrack.Web.Controllers
         {
             await Task.Delay(1);
 
+            List<Task> retrieves = new List<Task>();
+            foreach (int swim in selectedSwim)
+            {
+
+            }
 
             return new OkResult();
         }

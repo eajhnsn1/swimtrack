@@ -51,24 +51,49 @@ namespace Eji.SwimTrack.Web.ServiceClient
                 throw;
             }
         }
+        
+        /// <summary>
+        /// Get the URL for retrieving a swim
+        /// </summary>
+        private Uri GetSwimUri(int swimId)
+        {
+            UriBuilder builder = new UriBuilder(ApiUri);
+            builder.Path += $"/swimId";
+
+            return builder.Uri;
+        }
+
+        /// <summary>
+        /// Retrieves a single swim
+        /// </summary>
+        public async Task<SwimData> GetSwim(int swimId)
+        {
+            return await GetAsync<SwimData>(GetSwimUri(swimId));
+        }
+
+        private async Task<T> GetAsync<T>(Uri requestUri)
+        {
+            // don't dispose client per guidelines
+            HttpClient httpClient = clientFactory.CreateClient();
+            HttpResponseMessage responseMessage = await httpClient.GetAsync(requestUri);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string body = await responseMessage.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<T>(body);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Request failed: { responseMessage.StatusCode }");
+            }
+        }
 
         /// <summary>
         /// Retrieve all swims
         /// </summary>
         public async Task<IEnumerable<SwimData>> GetAllSwimsAsync()
         {
-            HttpClient httpClient = clientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await httpClient.GetAsync(ApiUri);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                string body = await responseMessage.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<List<SwimData>>(body);
-            }
-            else
-            {
-                throw new InvalidOperationException($"Request failed: { responseMessage.StatusCode }");
-            }
+            return await GetAsync<List<SwimData>>(ApiUri);
         }
     }
 }

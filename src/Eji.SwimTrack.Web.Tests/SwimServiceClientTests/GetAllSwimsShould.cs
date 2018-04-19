@@ -18,11 +18,6 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
 {
     public class GetAllSwimsShould : SwimServiceClientTestBase
     {
-        public GetAllSwimsShould()
-        {
-        }
-
-
         [Fact]
         public async Task MakeHttpRequest()
         {
@@ -48,7 +43,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
         [Fact]
         public async Task DeserializeOne_GivenSuccess()
         {
-            SetupResponseContent("OneSwim.json");
+            SetupResponseContent("ArrayWithOneSwim.json");
 
             IEnumerable<SwimData> swimData = await Client.GetAllSwimsAsync();
 

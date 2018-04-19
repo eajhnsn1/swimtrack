@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <None Remove="SwimServiceClientTests\ApiData\SwimApi\AllSwims.json" />
-    <None Remove="SwimServiceClientTests\ApiData\SwimApi\OneSwim.json" />
+    <None Remove="SwimServiceClientTests\ApiData\SwimApi\ArrayWithOneSwim.json" />
     <None Remove="SwimServiceClientTests\ApiData\SwimApi\SingleSwim.json" />
   </ItemGroup>
 
@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="SwimServiceClientTests\ApiData\SwimApi\SingleSwim.json" />
-    <EmbeddedResource Include="SwimServiceClientTests\ApiData\SwimApi\OneSwim.json" />
+    <EmbeddedResource Include="SwimServiceClientTests\ApiData\SwimApi\ArrayWithOneSwim.json" />
     <EmbeddedResource Include="SwimServiceClientTests\ApiData\SwimApi\AllSwims.json" />
   </ItemGroup>
 

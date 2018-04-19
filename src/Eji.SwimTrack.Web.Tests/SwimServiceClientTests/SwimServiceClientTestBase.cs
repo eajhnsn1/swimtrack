@@ -46,6 +46,21 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             });
         }
 
+        /// <summary>
+        /// Sets up a response for a particular URI
+        /// </summary>
+        protected void SetupResponseContent(string uriPath, string responseFileName)
+        {
+            UriBuilder uriBuilder = new UriBuilder(dummyUrl);
+            uriBuilder.Path += uriPath;
+
+            Handler.Setup(h => h.Send(It.Is<HttpRequestMessage>(r => r.RequestUri == uriBuilder.Uri))).Returns(new HttpResponseMessage()
+            {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Content = new StringContent(GetTestResponse(responseFileName))
+            });
+        }
+
         protected void SetupResponseContent(string responseFileName)
         {
             Handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()

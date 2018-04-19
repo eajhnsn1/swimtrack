@@ -58,7 +58,7 @@ namespace Eji.SwimTrack.Web.ServiceClient
         private Uri GetSwimUri(int swimId)
         {
             UriBuilder builder = new UriBuilder(ApiUri);
-            builder.Path += $"/swimId";
+            builder.Path += $"/{swimId}";
 
             return builder.Uri;
         }

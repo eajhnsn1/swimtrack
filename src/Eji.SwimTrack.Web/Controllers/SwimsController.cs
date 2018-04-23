@@ -11,14 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Eji.SwimTrack.Web.Controllers
 {
     
-    public class SwimController : Controller
+    public class SwimsController : Controller
     {
         ISwimServiceClient swimService = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public SwimController(ISwimServiceClient client)
+        public SwimsController(ISwimServiceClient client)
         {
             if (client == null)
             {

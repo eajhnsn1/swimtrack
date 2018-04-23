@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Eji.SwimTrack.Web.Models;
 
-namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
+namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
 {
     public class IndexActionShould
     {
         Mock<ISwimServiceClient> swimService = new Mock<ISwimServiceClient>();
-        SwimController swimController = null;
+        SwimsController swimController = null;
 
         public IndexActionShould()
         {
@@ -44,7 +44,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimControllerTests
             Task<IEnumerable<SwimData>> result = Task<IEnumerable<SwimData>>.FromResult((IEnumerable<SwimData>)(swims));
             swimService.Setup(s => s.GetAllSwimsAsync()).Returns(result);
 
-            swimController = new SwimController(swimService.Object);
+            swimController = new SwimsController(swimService.Object);
         }
 
         [Fact]

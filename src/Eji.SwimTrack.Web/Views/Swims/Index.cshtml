@@ -29,6 +29,25 @@
                         </select>
                     </span>
                 </div>
+
+                <div id="printSheetModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Create Swim Sheet</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="title">Meet Title:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="createSheetButton">Create Sheet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 w-100 ml-1 mt-2">
@@ -64,9 +83,21 @@
     <script>
         $(document).ready(function () {
             $("#command").on("change", function () {
-                // post the form
+                var cmd = $("#command");
+                var index = cmd.children("option:selected").index()
+
+                if (index == 1) {
+                    $("#printSheetModal").modal();
+                }
+            });
+
+            $("#printSheetModal").on("hidden.bs.modal", function () {
+                $("#command")[0].selectedIndex = 0;
+            });
+
+            $("#createSheetButton").click(function () {
                 $("#swimListingForm").submit();
-            })
+            });
         })
     </script>
 }

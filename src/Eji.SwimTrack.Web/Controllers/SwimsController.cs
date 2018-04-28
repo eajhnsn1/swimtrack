@@ -31,6 +31,12 @@ namespace Eji.SwimTrack.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Execute(SwimListCommand command, int[] selectedSwim)
         {
+            if (command == SwimListCommand.PrintSheet)
+            {
+                return RedirectToAction(nameof(SwimSheetController.Index), "SwimSheet", new { selectedSwims = selectedSwim });
+            }
+
+            /*
             List<Task> retrieves = new List<Task>();
             foreach (int swimId in selectedSwim)
             {
@@ -40,6 +46,9 @@ namespace Eji.SwimTrack.Web.Controllers
             await Task.WhenAll(retrieves.ToArray());
 
             return new OkResult();
+            */
+
+            return Ok();
         }
 
         public async Task<IActionResult> Index([FromQuery]SwimFilterModel filter)

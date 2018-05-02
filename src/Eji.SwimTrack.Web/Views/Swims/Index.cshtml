@@ -22,10 +22,10 @@
             <div class="row">
                 <div class="col-xs-12 ml-auto mr-4">
                     <span class="form-inline">
-                        With Selected:
                         <select class="form-control ml-2" id="command" name="command">
                             <option value="">Action...</option>
                             <option value="PrintSheet">Print Sheet</option>
+                            <option value="AddSwim">Add Swim</option>
                         </select>
                     </span>
                 </div>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="title">Meet Title:</label>
+                                    <label for="title" class="font-weight-bold">Meet Title:</label>
                                     <input type="text" class="form-control" id="title">
                                 </div>
                             </div>
@@ -78,6 +78,22 @@
     </div>
 </div>
 
+@using (Html.BeginForm("Add", "Swim", FormMethod.Post, new { id = "newSwimForm" }))
+{
+    <div id="newSwimModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Swim</h3>
+                </div>
+                <div class="modal-body">
+                    @Html.EditorFor(model => model.NewSwim)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 @section Scripts
     {
     <script>
@@ -88,6 +104,10 @@
 
                 if (index == 1) {
                     $("#printSheetModal").modal();
+                }
+                else if (index == 2) {
+                    // display new swim form
+                    $("#newSwimModal").modal();
                 }
             });
 

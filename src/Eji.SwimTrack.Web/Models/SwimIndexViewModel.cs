@@ -13,6 +13,11 @@ namespace Eji.SwimTrack.Web.Models
     {
         List<SwimViewModel> swims = new List<SwimViewModel>();
 
+        public SwimEditViewModel NewSwim
+        {
+            get; set;
+        }
+
         public IEnumerable<SwimViewModel> Swims
         {
             get { return swims; }

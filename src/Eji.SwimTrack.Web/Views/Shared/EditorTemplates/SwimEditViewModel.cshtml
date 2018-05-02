@@ -1,0 +1,92 @@
+﻿@model Eji.SwimTrack.Web.Models.SwimEditViewModel
+
+<div class="row">
+    <div class="col-md-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="SwimDate" class="control-label">Date:</label>
+            <input asp-for="SwimDate" class="form-control" type="date" />
+            <span asp-validation-for="SwimDate" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="EventNumber" class="control-label">Event #:</label>
+            <input asp-for="EventNumber" class="form-control" />
+            <span asp-validation-for="EventNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Distance" class="control-label">Distance:</label>
+            <div class="input-group">
+                <select class="form-control">
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="400">400</option>
+                    <option value="800">800</option>
+                    <option value="800">1650</option>
+                </select>
+                <select class="form-control">
+                    <option value="meter">Meter</option>
+                    <option value="yard">Yard</option>
+                </select>
+            </div>
+            <span asp-validation-for="Distance" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Stroke" class="control-label">Stroke:</label>
+            <select class="form-control">
+                <option value="Backstroke">Backstroke</option>
+                <option value="Backstroke">Breaststroke</option>
+                <option value="Backstroke">Butterfly</option>
+                <option value="Backstroke">Freestyle</option>
+                <option value="Backstroke">Medley</option>
+            </select>
+            <span asp-validation-for="Stroke" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="IsRelay" class="control-label">Relay:</label>
+            <input asp-for="IsRelay" type="checkbox" class="form-control"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Heat" class="control-label">Heat #:</label>
+            <input asp-for="Heat" class="form-control" />
+            <span asp-validation-for="Heat" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Lane" class="control-label">Lane #:</label>
+            <input asp-for="Lane" class="form-control" />
+            <span asp-validation-for="Lane" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="LongCourse" class="control-label">Long Course:</label>
+            <input asp-for="LongCourse" type="checkbox" class="form-control" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>

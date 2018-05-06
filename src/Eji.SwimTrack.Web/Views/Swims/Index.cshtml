@@ -78,7 +78,7 @@
     </div>
 </div>
 
-@using (Html.BeginForm("Add", "Swim", FormMethod.Post, new { id = "newSwimForm" }))
+@using (Html.BeginForm("Add", "Swims", FormMethod.Post, new { id = "newSwimForm" }))
 {
     <div id="newSwimModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -88,6 +88,14 @@
                 </div>
                 <div class="modal-body">
                     @Html.EditorFor(model => model.NewSwim)
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,6 +120,10 @@
             });
 
             $("#printSheetModal").on("hidden.bs.modal", function () {
+                $("#command")[0].selectedIndex = 0;
+            });
+
+            $("#newSwimForm").on("hidden.bs.modal", function () {
                 $("#command")[0].selectedIndex = 0;
             });
 

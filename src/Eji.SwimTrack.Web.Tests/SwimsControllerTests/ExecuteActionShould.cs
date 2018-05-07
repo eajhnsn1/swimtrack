@@ -24,7 +24,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
         [Fact]
         public async void RedirectToPrintSheet_GivinPrintSheetAction()
         {
-            IActionResult result = await swimController.Execute(SwimListCommand.PrintSheet, new[] { 1, 2, 3 });
+            IActionResult result = swimController.Execute(SwimListCommand.PrintSheet, new[] { 1, 2, 3 });
 
             result.Should().BeAssignableTo<RedirectToActionResult>();
 

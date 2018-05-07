@@ -64,6 +64,25 @@ namespace Eji.SwimTrack.Web.ServiceClient
         }
 
         /// <summary>
+        /// Adds a new swim 
+        /// </summary>
+        public async Task AddSwim(SwimData swimData)
+        {
+            await PostAsync<SwimData>(ApiUri, swimData);
+        }
+
+        private async Task PostAsync<T>(Uri requestUri, T data)
+        {
+            // don't dispose client per guidelines
+            HttpClient httpClient = clientFactory.CreateClient();
+
+            string dataToPost = JsonConvert.SerializeObject(data);
+
+            HttpResponseMessage responseMessage = await httpClient.PostAsync(requestUri, new StringContent(dataToPost));
+            responseMessage.EnsureSuccessStatusCode();
+        }
+
+        /// <summary>
         /// Retrieves a single swim
         /// </summary>
         public async Task<SwimData> GetSwim(int swimId)

@@ -37,7 +37,7 @@ namespace Eji.SwimTrack.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Execute(SwimListCommand command, int[] selectedSwim)
+        public IActionResult Execute(SwimListCommand command, int[] selectedSwim)
         {
             if (command == SwimListCommand.PrintSheet)
             {

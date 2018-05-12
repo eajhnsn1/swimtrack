@@ -61,6 +61,15 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
             });
         }
 
+        protected void SetupResponseEmptyBodySuccess()
+        {
+            Handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()
+            {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Content = new StringContent("")
+            });
+        }
+
         protected void SetupResponseContent(string responseFileName)
         {
             Handler.Setup(h => h.Send(It.IsAny<HttpRequestMessage>())).Returns(new HttpResponseMessage()

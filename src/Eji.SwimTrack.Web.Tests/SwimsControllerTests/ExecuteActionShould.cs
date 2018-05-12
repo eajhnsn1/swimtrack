@@ -22,7 +22,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
         }
 
         [Fact]
-        public async void RedirectToPrintSheet_GivinPrintSheetAction()
+        public void RedirectToPrintSheet_GivinPrintSheetAction()
         {
             IActionResult result = swimController.Execute(SwimListCommand.PrintSheet, new[] { 1, 2, 3 });
 

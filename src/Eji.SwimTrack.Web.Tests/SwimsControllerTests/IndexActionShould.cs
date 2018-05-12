@@ -14,11 +14,8 @@ using Eji.SwimTrack.Web.Models;
 
 namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
 {
-    public class IndexActionShould
+    public class IndexActionShould : SwimsControllerTestBase
     {
-        Mock<ISwimServiceClient> swimService = new Mock<ISwimServiceClient>();
-        SwimsController swimController = null;
-
         public IndexActionShould()
         {
             List<SwimData> swims = new List<SwimData>()
@@ -42,15 +39,13 @@ namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
             };
 
             Task<IEnumerable<SwimData>> result = Task<IEnumerable<SwimData>>.FromResult((IEnumerable<SwimData>)(swims));
-            swimService.Setup(s => s.GetAllSwimsAsync()).Returns(result);
-
-            swimController = new SwimsController(swimService.Object);
+            SwimService.Setup(s => s.GetAllSwimsAsync()).Returns(result);
         }
 
         [Fact]
         public async Task ReturnAllSwims_GivenNoFilter()
         {
-            ViewResult result = await swimController.Index(null) as ViewResult;
+            ViewResult result = await SwimController.Index(null) as ViewResult;
 
             SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
 
@@ -63,7 +58,7 @@ namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
             SwimFilterModel filter = new SwimFilterModel();
             filter.Stroke = Stroke.Freestyle;
 
-            ViewResult result = await swimController.Index(filter) as ViewResult;
+            ViewResult result = await SwimController.Index(filter) as ViewResult;
 
             SwimIndexViewModel vm = result.Model as SwimIndexViewModel;
 

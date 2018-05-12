@@ -11,20 +11,12 @@ using Xunit;
 
 namespace Eji.SwimTrack.Web.Tests.SwimsControllerTests
 {
-    public class ExecuteActionShould
+    public class ExecuteActionShould : SwimsControllerTestBase
     {
-        Mock<ISwimServiceClient> swimService = new Mock<ISwimServiceClient>();
-        SwimsController swimController = null;
-
-        public ExecuteActionShould()
-        {
-            swimController = new SwimsController(swimService.Object);
-        }
-
         [Fact]
         public void RedirectToPrintSheet_GivinPrintSheetAction()
         {
-            IActionResult result = swimController.Execute(SwimListCommand.PrintSheet, new[] { 1, 2, 3 });
+            IActionResult result = SwimController.Execute(SwimListCommand.PrintSheet, new[] { 1, 2, 3 });
 
             result.Should().BeAssignableTo<RedirectToActionResult>();
 

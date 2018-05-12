@@ -31,7 +31,17 @@ namespace Eji.SwimTrack.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(SwimEditViewModel swim)
         {
-            await Task.Delay(100);
+            SwimData data = new SwimData();
+
+            data.Distance = swim.Distance;
+            data.EventNumber = swim.EventNumber;
+            data.Heat = swim.Heat;
+            data.Lane = swim.Lane;
+            data.IsRelay = swim.IsRelay;
+            data.ShortCourse = !swim.LongCourse;
+            data.SwimDate = swim.SwimDate;
+
+            await swimService.AddSwim(data);
 
             return RedirectToAction(nameof(Index));
         }

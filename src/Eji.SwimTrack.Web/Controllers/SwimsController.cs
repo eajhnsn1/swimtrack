@@ -51,14 +51,16 @@ namespace Eji.SwimTrack.Web.Controllers
         public IActionResult Execute(SwimListCommand command, int[] selectedSwim)
         {
             Dictionary<string, object> passThru = new Dictionary<string, object>();
-            foreach (var pair in Request.Form)
+            if (Request != null)
             {
-                if (!pair.Key.StartsWith("_"))
+                foreach (var pair in Request.Form)
                 {
-                    passThru[pair.Key] = pair.Value;
+                    if (!pair.Key.StartsWith("_"))
+                    {
+                        passThru[pair.Key] = pair.Value;
+                    }
                 }
             }
-
             if (command == SwimListCommand.PrintSheet)
             {
                 return RedirectToAction(nameof(SwimSheetController.Index), "SwimSheet", passThru);

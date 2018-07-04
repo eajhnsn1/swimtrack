@@ -2,6 +2,9 @@
 @{ 
     Layout = null;
 }
+
+@model Eji.SwimTrack.Web.Models.SwimSheetViewModel;
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,14 +24,51 @@
 </head>
 <body>
     <div class="container-fluid body-content">
-        SWIM SHEET HERE
+        <div class="meetTitle bold">
+            @Model.Title
+        </div>
+        <hr class="blue"/>
+        <div class="meetSubtitle bold">
+            @Model.SubTitle
+        </div>
+        @foreach (var groupedSwims in Model.Swims.GroupBy(s => s.SwimDate))
+        {
+            <table class="swimSheet">
+                <thead>
+                    <tr>
+                        <th>Event Number</th>
+                        <th>Event Name</th>
+                        <th>Heat</th>
+                        <th>Lane</th>
+                        <th>Entry Time</th>
+                        <th>Motivational<br/>Times</th>
+                        <th>Final Result</th>
+                        <th>Notes/Splits</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (SwimViewModel swim in groupedSwims)
+                    {
+                        <tr>
+                            <td class="bold">@swim.EventNumber</td>
+                            <td class="bold">@swim.Event</td>
+                            <td>@swim.Heat</td>
+                            <td>@swim.Lane</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
         <hr />
         <footer>
-            <p>&copy; 2018 - Eji.SwimTrack.Web</p>
+            <p>Generated @( DateTime.Now )</p>
         </footer>
-    </div>
-
-    <environment include="Development">
+    </div><environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

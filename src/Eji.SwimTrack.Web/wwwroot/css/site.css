@@ -1,5 +1,6 @@
 ﻿body {
     padding-bottom: 20px;
+    font-family:Calibri;
 }
 
 .selectColumn {
@@ -47,4 +48,48 @@
     .carousel-caption {
         display: none;
     }
+}
+
+.meetTitle{
+    text-align:center;
+    font-size:15pt;
+    min-width:10.5in;
+}
+
+.meetSubtitle{
+    text-align:right;
+    font-size:13pt;
+    min-width:10.5in;
+    margin: 0 0 1em 0;
+}
+
+.blue{
+    background-color: #4472C4;
+}
+
+hr {
+    height:2px;
+    margin-top:0px;
+    margin-bottom:0px;
+    min-width:10.5in;
+}
+
+table.swimSheet{
+    margin:0 auto;
+    width: 10.5in;
+    font-weight:normal;
+    margin-bottom:2em;
+}
+
+    table.swimSheet th {
+        font-size: 12pt;
+        font-weight:normal;
+        background-color: #4472C4;
+        color:white;
+        padding:5px;
+        text-align:center;
+    }
+
+.bold{
+    font-weight: bold;
 }

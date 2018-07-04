@@ -39,7 +39,11 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="title" class="font-weight-bold">Meet Title:</label>
-                                    <input type="text" class="form-control" id="title">
+                                    <input type="text" class="form-control" id="title" name="meetTitle" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Subtitle" class="font-weight-bold">Subtitle:</label>
+                                    <input type="text" class="form-control" id="subTitle" name="meetSubtitle" />
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -108,12 +112,12 @@
         $(document).ready(function () {
             $("#command").on("change", function () {
                 var cmd = $("#command");
-                var index = cmd.children("option:selected").index()
+                var index = cmd.children("option:selected").index();
 
-                if (index == 1) {
+                if (index === 1) {
                     $("#printSheetModal").modal();
                 }
-                else if (index == 2) {
+                else if (index === 2) {
                     // display new swim form
                     $("#newSwimModal").modal();
                 }
@@ -128,6 +132,7 @@
             });
 
             $("#createSheetButton").click(function () {
+
                 $("#swimListingForm").submit();
             });
         })

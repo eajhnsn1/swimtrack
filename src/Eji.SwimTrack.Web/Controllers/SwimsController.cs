@@ -7,6 +7,7 @@ using Eji.SwimTrack.Service.Models.Common;
 using Eji.SwimTrack.Web.Models;
 using Eji.SwimTrack.Web.ServiceClient;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace Eji.SwimTrack.Web.Controllers
 {
@@ -49,9 +50,18 @@ namespace Eji.SwimTrack.Web.Controllers
         [HttpPost]
         public IActionResult Execute(SwimListCommand command, int[] selectedSwim)
         {
+            Dictionary<string, object> passThru = new Dictionary<string, object>();
+            foreach (var pair in Request.Form)
+            {
+                if (!pair.Key.StartsWith("_"))
+                {
+                    passThru[pair.Key] = pair.Value;
+                }
+            }
+
             if (command == SwimListCommand.PrintSheet)
             {
-                return RedirectToAction(nameof(SwimSheetController.Index), "SwimSheet", new { selectedSwims = selectedSwim });
+                return RedirectToAction(nameof(SwimSheetController.Index), "SwimSheet", passThru);
             }
 
             return Ok();

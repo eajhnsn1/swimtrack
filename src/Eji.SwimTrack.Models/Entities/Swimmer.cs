@@ -10,8 +10,6 @@ namespace Eji.SwimTrack.Models.Entities
     [Table("Swimmers")]
     public class Swimmer : EntityBase
     {
-        public int SwimmerId { get; set; }
-
         [MaxLength(100)]
         public string FirstName { get; set; }
 

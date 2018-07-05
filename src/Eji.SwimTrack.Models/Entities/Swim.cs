@@ -69,5 +69,8 @@ namespace Eji.SwimTrack.Models.Entities
         public string Notes { get; set; }
 
         public bool? DQ { get; set; }
+
+        public int? SwimmerId { get; set; }
+        public Swimmer Swimmer { get; set; }
     }
 }

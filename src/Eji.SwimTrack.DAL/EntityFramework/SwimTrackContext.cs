@@ -9,6 +9,7 @@ namespace Eji.SwimTrack.DAL.EntityFramework
     public class SwimTrackContext : DbContext
     {
         public DbSet<Swim> Swims { get; set; }
+        public DbSet<Swimmer> Swimmers { get; set; }
 
         public SwimTrackContext()
         {

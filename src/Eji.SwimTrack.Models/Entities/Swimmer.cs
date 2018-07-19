@@ -22,7 +22,7 @@ namespace Eji.SwimTrack.Models.Entities
         [MaxLength(100)]
         public string Nickname { get; set; }
 
-        [Column(TypeName="DATE")]
+        [Column(TypeName = "DATE")]
         public DateTime BirthDate { get; set; }
 
         public List<Swim> Swims { get; set; }

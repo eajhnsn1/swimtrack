@@ -10,9 +10,9 @@ using FluentAssertions;
 namespace Eji.SwimTrack.Service.Tests.SwimProfileTests
 {
     [Collection("AutoMapper")]
-    public class SwimProfileShould 
+    public class ConstructorShould 
     {
-        public SwimProfileShould()
+        public ConstructorShould()
         {
             Mapper.Reset();
             Mapper.Initialize(m => m.AddProfile<SwimProfile>());

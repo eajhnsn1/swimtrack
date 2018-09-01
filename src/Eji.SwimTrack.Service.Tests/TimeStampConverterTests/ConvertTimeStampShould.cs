@@ -8,24 +8,24 @@ using System.Text;
 using Xunit;
 using Eji.SwimTrack.Service.Converters;
 
-namespace Eji.SwimTrack.Service.Tests.ControllerBaseTests
+namespace Eji.SwimTrack.Service.Tests.TimeStampConverterTests
 {
-    public class TimeStampConverterShould 
+    public class ConvertTimeStampShould 
     {
         [Fact]
-        public void ConvertTimeStamp_GivenEmptyString()
+        public void Convert_GivenEmptyString()
         {
             Assert.Null(TimeStampConverter.ConvertTimeStamp(""));
         }
 
         [Fact]
-        public void ConvertTimeStampReturnEmpty_GivenInvalidString()
+        public void ReturnEmpty_GivenInvalidString()
         {
             Assert.Null(TimeStampConverter.ConvertTimeStamp("a;lskdjfl;asjf883ra;j"));
         }
 
         [Fact]
-        public void ConvertTimeStamp()
+        public void Convert()
         {
             byte[] timeStamp = new byte[] { 1, 2, 3, 4, 5, 6 };
             string stringContent = JsonConvert.SerializeObject(timeStamp);

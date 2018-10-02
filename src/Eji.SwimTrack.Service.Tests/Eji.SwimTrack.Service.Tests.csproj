@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Eji.SwimTrack.Service\Eji.SwimTrack.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SwimmerControllerTests\" />
-  </ItemGroup>
-
 </Project>

@@ -26,7 +26,7 @@ namespace Eji.SwimTrack.Service.Controllers
         }
 
         // GET: api/Swim
-        [HttpGet]
+        [HttpGet(Name="GetSwims")]
         public async Task<IEnumerable<SwimData>> Get()
         {
             // TODO: limit it to the user's swims
@@ -34,7 +34,7 @@ namespace Eji.SwimTrack.Service.Controllers
         }
 
         // GET: api/Swim/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetSwim")]
         public async Task<SwimData> Get(int id)
         {
             Swim swim = await swimRepository.FindAsync(id);

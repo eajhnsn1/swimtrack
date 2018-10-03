@@ -24,7 +24,7 @@ namespace Eji.SwimTrack.Service.Controllers
             this.swimmerRepository = swimmerRepository ?? throw new ArgumentNullException(nameof(swimmerRepository));
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetSwimmers")]
         public async Task<IEnumerable<SwimmerData>> Get()
         {
             // TODO: limit it to the user's swims
@@ -32,7 +32,7 @@ namespace Eji.SwimTrack.Service.Controllers
         }
 
         // GET: api/Swim/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetSwimmer")]
         public async Task<SwimmerData> Get(int id)
         {
             Swimmer swimmer = await swimmerRepository.FindAsync(id);

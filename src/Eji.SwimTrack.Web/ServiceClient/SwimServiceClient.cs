@@ -12,57 +12,15 @@ namespace Eji.SwimTrack.Web.ServiceClient
     /// <summary>
     /// REST client for the swim api
     /// </summary>
-    public class SwimServiceClient : ISwimServiceClient
+    public class SwimServiceClient : ServiceClientBase, ISwimServiceClient
     {
         const string CONFIG_SWIMAPIURI = "SwimTrackServices:SwimApiUrl";
-        IHttpClientFactory clientFactory = null;
-
-        public Uri ApiUri
-        {
-            get;
-            internal set;
-        }
 
         public SwimServiceClient(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+            : base (configuration, httpClientFactory, CONFIG_SWIMAPIURI)
         {
-            if (httpClientFactory == null)
-            {
-                throw new ArgumentNullException(nameof(httpClientFactory));
-            }
-
-            this.clientFactory = httpClientFactory;
-
-            LoadConfiguration(configuration);
-        }
-
-        private void LoadConfiguration(IConfiguration configuration)
-        {
-            string configValue = configuration[CONFIG_SWIMAPIURI];
-
-            try
-            {
-                ApiUri = new Uri(configValue);
-            }
-            catch (UriFormatException ex)
-            {
-                ex.Data["Service"] = nameof(SwimServiceClient);
-                ex.Data["ConfigurationValue"] = configValue;
-
-                throw;
-            }
         }
         
-        /// <summary>
-        /// Get the URL for retrieving a swim
-        /// </summary>
-        private Uri GetSwimUri(int swimId)
-        {
-            UriBuilder builder = new UriBuilder(ApiUri);
-            builder.Path += $"/{swimId}";
-
-            return builder.Uri;
-        }
-
         /// <summary>
         /// Adds a new swim 
         /// </summary>
@@ -71,40 +29,12 @@ namespace Eji.SwimTrack.Web.ServiceClient
             await PostAsync<SwimData>(ApiUri, swimData);
         }
 
-        private async Task PostAsync<T>(Uri requestUri, T data)
-        {
-            // don't dispose client per guidelines
-            HttpClient httpClient = clientFactory.CreateClient();
-
-            string dataToPost = JsonConvert.SerializeObject(data);
-
-            HttpResponseMessage responseMessage = await httpClient.PostAsync(requestUri, new StringContent(dataToPost));
-            responseMessage.EnsureSuccessStatusCode();
-        }
-
         /// <summary>
         /// Retrieves a single swim
         /// </summary>
         public async Task<SwimData> GetSwim(int swimId)
         {
-            return await GetAsync<SwimData>(GetSwimUri(swimId));
-        }
-
-        private async Task<T> GetAsync<T>(Uri requestUri)
-        {
-            // don't dispose client per guidelines
-            HttpClient httpClient = clientFactory.CreateClient();
-            HttpResponseMessage responseMessage = await httpClient.GetAsync(requestUri);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                string body = await responseMessage.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<T>(body);
-            }
-            else
-            {
-                throw new InvalidOperationException($"Request failed: { responseMessage.StatusCode }");
-            }
+            return await GetAsync<SwimData>(GetObjectUri(swimId));
         }
 
         /// <summary>

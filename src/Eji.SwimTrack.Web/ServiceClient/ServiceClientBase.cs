@@ -21,28 +21,10 @@ namespace Eji.SwimTrack.Web.ServiceClient
             internal set;
         }
 
-        public ServiceClientBase(IConfiguration configuration, IHttpClientFactory httpClientFactory, string configurationKey)
+        public ServiceClientBase(Uri apiUri, IHttpClientFactory httpClientFactory)
         {
+            ApiUri = apiUri ?? throw new ArgumentNullException(nameof(apiUri));
             clientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(HttpClientFactory));
-
-            LoadConfiguration(configuration, configurationKey);
-        }
-
-        private void LoadConfiguration(IConfiguration configuration, string configurationKey)
-        {
-            string configValue = configuration[configurationKey];
-
-            try
-            {
-                ApiUri = new Uri(configValue);
-            }
-            catch (UriFormatException ex)
-            {
-                ex.Data["Service"] = nameof(SwimServiceClient);
-                ex.Data["ConfigurationValue"] = configValue;
-
-                throw;
-            }
         }
 
         protected async Task PostAsync<T>(Uri requestUri, T data)

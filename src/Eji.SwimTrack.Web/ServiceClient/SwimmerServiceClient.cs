@@ -4,17 +4,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Eji.SwimTrack.Service.Models.Swimmers;
+using Eji.SwimTrack.Web.ServiceClient.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Eji.SwimTrack.Web.ServiceClient
 {
     public class SwimmerServiceClient : ServiceClientBase, ISwimmerServiceClient
     {
-        const string CONFIG_SWIMMERAPIURI = "SwimTrackServices:SwimmerApiUrl";
-
-        public SwimmerServiceClient(IConfiguration configuration, IHttpClientFactory httpClientFactory)
-            : base(configuration, httpClientFactory, CONFIG_SWIMMERAPIURI)
+        public SwimmerServiceClient(IOptions<SwimmerServiceClientOptions> options, IHttpClientFactory httpClientFactory)
+            : base(new Uri(options.Value.Url), httpClientFactory)
         {
         }
         

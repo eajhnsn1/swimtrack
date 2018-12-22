@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Eji.SwimTrack.Web.ServiceClient;
+using Eji.SwimTrack.Web.ServiceClient.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,8 @@ namespace Eji.SwimTrack.Web
                     .AddHttpClient()
                     .AddMvcGrid();
 
+            services.Configure<SwimServiceClientOptions>(Configuration.GetSection("SwimTrackServices:Swim"));
+            services.Configure<SwimmerServiceClientOptions>(Configuration.GetSection("SwimTrackServices:Swimmer"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

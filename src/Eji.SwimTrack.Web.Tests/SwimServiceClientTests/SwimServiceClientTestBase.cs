@@ -1,6 +1,8 @@
 ﻿using Eji.SwimTrack.Web.ServiceClient;
+using Eji.SwimTrack.Web.ServiceClient.Options;
 using Eji.SwimTrack.Web.Tests.Fakes;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -25,16 +27,16 @@ namespace Eji.SwimTrack.Web.Tests.SwimServiceClientTests
 
         public SwimServiceClientTestBase()
         {
-            configuration = new Mock<IConfiguration>();
-            configuration.Setup(c => c["SwimTrackServices:SwimApiUrl"]).Returns(dummyUrl);
-
             Handler = new Mock<FakeHttpMessageHandler>() { CallBase = true };
             HttpClient httpClient = new HttpClient(Handler.Object);
 
             factory = new Mock<IHttpClientFactory>();
             factory.Setup(f => f.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
-            Client = new SwimServiceClient(configuration.Object, factory.Object);
+            Mock<IOptions<SwimServiceClientOptions>> options = new Mock<IOptions<SwimServiceClientOptions>>();
+            options.Setup(o => o.Value).Returns(new SwimServiceClientOptions() { Url = dummyUrl });
+
+            Client = new SwimServiceClient(options.Object, factory.Object);
         }
 
         protected void SetupResponseFailure(HttpStatusCode status)

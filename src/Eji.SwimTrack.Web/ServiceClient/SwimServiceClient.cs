@@ -1,5 +1,7 @@
 ﻿using Eji.SwimTrack.Service.Models;
+using Eji.SwimTrack.Web.ServiceClient.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,8 @@ namespace Eji.SwimTrack.Web.ServiceClient
     /// </summary>
     public class SwimServiceClient : ServiceClientBase, ISwimServiceClient
     {
-        const string CONFIG_SWIMAPIURI = "SwimTrackServices:SwimApiUrl";
-
-        public SwimServiceClient(IConfiguration configuration, IHttpClientFactory httpClientFactory)
-            : base (configuration, httpClientFactory, CONFIG_SWIMAPIURI)
+        public SwimServiceClient(IOptions<SwimServiceClientOptions> options, IHttpClientFactory httpClientFactory)
+            : base (new Uri(options.Value.Url), httpClientFactory)
         {
         }
         
